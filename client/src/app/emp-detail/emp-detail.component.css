@@ -1,0 +1,10 @@
+:host {
+  width: 75%;
+  height: calc(100% - 132px);
+  position: fixed;
+}
+
+md-card {
+  height: 100%;
+  margin: 10px;
+}
