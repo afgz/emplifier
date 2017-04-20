@@ -8,7 +8,7 @@ import { Employee } from '../shared/model/employee.model'
   styleUrls: ['./emp-item.component.css']
 })
 export class EmpItemComponent implements OnInit {
-  private employee : Employee[];
+  private employees : Array<Employee>;
 
   constructor(
     private employeeService : EmployeeService
@@ -16,8 +16,7 @@ export class EmpItemComponent implements OnInit {
 
   ngOnInit() {
       this.employeeService.get()
-        .subscribe(employee => this.employee = employee);
-      console.log(this.employee);
+        .subscribe(response => this.employees=response);
   }
 
 }
