@@ -24,7 +24,7 @@ public class EmployeeController {
 	
 	@GetMapping("/employees/{id}")
 	@ResponseBody
-	public Employee getById( @PathVariable int id ) {
+	public Employee getById( @PathVariable String id ) {
 		Employee empResult = new Employee();
 		notFound = true;
 		

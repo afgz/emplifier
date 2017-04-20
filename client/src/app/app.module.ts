@@ -9,7 +9,7 @@ import { MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCard
 import { AppComponent } from './app.component';
 import { EmpItemComponent } from './emp-item/emp-item.component';
 
-import { EmployeeService } from './employee.service';
+import { EmployeeService } from './shared/services/employee.service';
 import { EmpDetailComponent } from './emp-detail/emp-detail.component';
 
 @NgModule({

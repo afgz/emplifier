@@ -3,14 +3,16 @@ package com.emplifier.entity;
 import java.sql.Date;
 
 import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="employees")
+@Table(name="employee")
 public class Employee {
 	@Id
 	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	private String id;
 	@Column(name="first_name", nullable=false)
 	private String firstName;
 	@Column(name="last_name", nullable=false)
@@ -39,8 +41,8 @@ public class Employee {
 	private String division;
 	@Column(name="email", nullable=false)
 	private String email;
-	@Column(name="location", nullable=false)
-	private String location;
+	@Column(name="location_id", nullable=false)
+	private String locationId;
 	@Column(name="image_url", nullable=false)
 	private String imageUrl;
 	
@@ -61,7 +63,7 @@ public class Employee {
 			String grade,
 			String division,
 			String email,
-			String location,
+			String locationId,
 			String imageUrl
 	) {
 		setFirstName(firstName);
@@ -78,16 +80,12 @@ public class Employee {
 		setGrade(grade);
 		setDivision(division);
 		setEmail(email);
-		setLocation(location);
+		setLocationId(locationId);
 		setImageUrl(imageUrl);
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -202,12 +200,12 @@ public class Employee {
 		this.email = email;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getLocationId() {
+		return locationId;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocationId(String locationId) {
+		this.locationId = locationId;
 	}
 
 	public String getImageUrl() {
@@ -217,5 +215,4 @@ public class Employee {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
 }
