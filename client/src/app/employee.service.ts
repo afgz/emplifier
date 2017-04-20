@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class EmployeeService {
-  private _employees;
+  private employees;
+  private serverURL;
 
-  constructor() {
-    this._employees = [
+  constructor(private http: Http) {
+    this.serverURL = '/api/employees/'
+    this.employees = [
       {
         id: 1,
         firstName: "Muhammad Ramziadh",
@@ -59,117 +64,15 @@ export class EmployeeService {
         division: "CDC AsteRx",
         email: "afgeshza@gmail.com",
         imageUrl: ""
-      },{
-        id: 4,
-        firstName: "Muhammad Ramziadh",
-        lastName: "Afgeshza",
-        gender: "Male",
-        dob: 769453200000,
-        nationality: "Indonesian",
-        maritalStatus: "Single",
-        phone: "087878000765",
-        subDivision: "Java BootCamp",
-        Status: "Contract",
-        suspendDate: null,
-        contractDate: 1294166565384,
-        grade: "SE-PG",
-        division: "CDC AsteRx",
-        email: "afgeshza@gmail.com",
-        imageUrl: ""
-      },
-      {
-        id: 5,
-        firstName: "Muhammad Ramziadh",
-        lastName: "Afgeshza",
-        gender: "Male",
-        dob: 769453200000,
-        nationality: "Indonesian",
-        maritalStatus: "Single",
-        phone: "087878000765",
-        subDivision: "Java BootCamp",
-        Status: "Contract",
-        suspendDate: null,
-        contractDate: 1294166565384,
-        grade: "SE-PG",
-        division: "CDC AsteRx",
-        email: "afgeshza@gmail.com",
-        imageUrl: ""
-      },
-      {
-        id: 6,
-        firstName: "Muhammad Ramziadh",
-        lastName: "Afgeshza",
-        gender: "Male",
-        dob: 769453200000,
-        nationality: "Indonesian",
-        maritalStatus: "Single",
-        phone: "087878000765",
-        subDivision: "Java BootCamp",
-        Status: "Contract",
-        suspendDate: null,
-        contractDate: 1294166565384,
-        grade: "SE-PG",
-        division: "CDC AsteRx",
-        email: "afgeshza@gmail.com",
-        imageUrl: ""
-      },{
-        id: 7,
-        firstName: "Muhammad Ramziadh",
-        lastName: "Afgeshza",
-        gender: "Male",
-        dob: 769453200000,
-        nationality: "Indonesian",
-        maritalStatus: "Single",
-        phone: "087878000765",
-        subDivision: "Java BootCamp",
-        Status: "Contract",
-        suspendDate: null,
-        contractDate: 1294166565384,
-        grade: "SE-PG",
-        division: "CDC AsteRx",
-        email: "afgeshza@gmail.com",
-        imageUrl: ""
-      },
-      {
-        id: 8,
-        firstName: "Muhammad Ramziadh",
-        lastName: "Afgeshza",
-        gender: "Male",
-        dob: 769453200000,
-        nationality: "Indonesian",
-        maritalStatus: "Single",
-        phone: "087878000765",
-        subDivision: "Java BootCamp",
-        Status: "Contract",
-        suspendDate: null,
-        contractDate: 1294166565384,
-        grade: "SE-PG",
-        division: "CDC AsteRx",
-        email: "afgeshza@gmail.com",
-        imageUrl: ""
-      },
-      {
-        id: 9,
-        firstName: "Muhammad Ramziadh",
-        lastName: "Afgeshza",
-        gender: "Male",
-        dob: 769453200000,
-        nationality: "Indonesian",
-        maritalStatus: "Single",
-        phone: "087878000765",
-        subDivision: "Java BootCamp",
-        Status: "Contract",
-        suspendDate: null,
-        contractDate: 1294166565384,
-        grade: "SE-PG",
-        division: "CDC AsteRx",
-        email: "afgeshza@gmail.com",
-        imageUrl: ""
-      },
-    ]
+      }];
   }
 
   get() {
-    return this._employees;
+    return this.http.get(this.serverURL, {})
+      .map(response => {
+        return response.json().employees;
+      });
   }
+
+  
 }
