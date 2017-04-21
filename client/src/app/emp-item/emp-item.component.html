@@ -1,3 +1,9 @@
-<md-card *ngFor="let employee of employees">
-  {{ employee.firstName }}
+<md-card *ngFor="let employee of employees"
+(click)="onSelect(employee)">
+  <md-card-header>
+      <div md-card-avatar class="header-image"></div>
+      <md-card-title>{{ employee.firstName }} {{ employee.lastName }}</md-card-title>
+      <md-card-subtitle>{{ employee.grade}}, {{employee.division}}</md-card-subtitle>
+      <md-card-subtitle>{{ employee.phone}}</md-card-subtitle>
+    </md-card-header>
 </md-card>

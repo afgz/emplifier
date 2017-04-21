@@ -27,6 +27,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 export class AppComponent {
+  selectedEmployee;
+
   showForm = 'out';
   formCol = 0;
 
@@ -36,5 +38,10 @@ export class AppComponent {
 
   toggleForm() {
     this.showForm = (this.showForm === 'in' ? 'out' : 'in');
+  }
+
+  onSelected(employee) {
+    this.selectedEmployee = employee;
+    
   }
 }

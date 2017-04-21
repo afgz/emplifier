@@ -7,4 +7,9 @@
 md-card {
   height: 100%;
   margin: 10px;
+  margin-left: 0;
+}
+
+md-input-container {
+  width: 95%;
 }

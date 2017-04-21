@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule } from '@angular/material';
+import { MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule, MdInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { EmpItemComponent } from './emp-item/emp-item.component';
@@ -28,7 +28,8 @@ import { EmpDetailComponent } from './emp-detail/emp-detail.component';
     MdIconModule,
     BrowserAnimationsModule,
     MdCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MdInputModule
   ],
   providers: [
     EmployeeService

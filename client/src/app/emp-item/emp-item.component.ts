@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EmployeeService } from '../shared/services/employee.service';
 import { Employee } from '../shared/model/employee.model'
 
@@ -8,6 +8,7 @@ import { Employee } from '../shared/model/employee.model'
   styleUrls: ['./emp-item.component.css']
 })
 export class EmpItemComponent implements OnInit {
+  @Output() show = new EventEmitter();
   private employees : Array<Employee>;
 
   constructor(
@@ -17,6 +18,10 @@ export class EmpItemComponent implements OnInit {
   ngOnInit() {
       this.employeeService.get()
         .subscribe(response => this.employees=response);
+  }
+
+  onSelect(employee) {
+    this.show.emit(employee);
   }
 
 }

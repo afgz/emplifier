@@ -4,10 +4,12 @@
 
 <div id="content" fxLayout="row">
 	<div id="list" fxFlex = "25%">
-    <app-emp-item></app-emp-item>
+    <app-emp-item
+	(show)="onSelected($event)"></app-emp-item>
 	</div>
 
 	<div id="detail" fxFlex = "75%">
-    <app-emp-detail></app-emp-detail>
+    <app-emp-detail
+	[employee]="selectedEmployee" *ngIf="selectedEmployee"></app-emp-detail>
 	</div>
 </div>
