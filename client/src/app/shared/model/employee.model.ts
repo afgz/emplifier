@@ -14,6 +14,6 @@ export interface Employee {
   grade:String;
   division:String;
   email:String;
-  location:String;
+  locationId:String;
   imageUrl:String;
 }

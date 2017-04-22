@@ -41,7 +41,7 @@ public class Employee {
 	private String division;
 	@Column(name="email", nullable=false)
 	private String email;
-	@Column(name="location_id", nullable=false)
+	@Column(name="location_id")
 	private String locationId;
 	@Column(name="image_url", nullable=false)
 	private String imageUrl;
