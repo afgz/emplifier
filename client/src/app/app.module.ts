@@ -4,12 +4,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule, MdInputModule } from '@angular/material';
+import { MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule, MdInputModule, MdSelectModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { EmpItemComponent } from './emp-item/emp-item.component';
 
 import { EmployeeService } from './shared/services/employee.service';
+import { LocationService } from './shared/services/location.service';
 import { EmpDetailComponent } from './emp-detail/emp-detail.component';
 
 @NgModule({
@@ -29,10 +30,12 @@ import { EmpDetailComponent } from './emp-detail/emp-detail.component';
     BrowserAnimationsModule,
     MdCardModule,
     FlexLayoutModule,
-    MdInputModule
+    MdInputModule,
+    MdSelectModule
   ],
   providers: [
-    EmployeeService
+    EmployeeService,
+    LocationService
   ],
   bootstrap: [AppComponent]
 })

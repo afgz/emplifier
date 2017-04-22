@@ -1,15 +1,22 @@
 :host {
-  width: 75%;
-  height: calc(100% - 132px);
-  position: fixed;
+  width: 100%;
 }
 
 md-card {
-  height: 100%;
+  min-height: calc(100% - 64px);
   margin: 10px;
   margin-left: 0;
 }
 
-md-input-container {
+md-input-container, md-select {
   width: 95%;
+  margin-bottom: 20px;
+}
+
+input {
+  max-height: 18px;
+}
+
+button {
+  float: right;
 }

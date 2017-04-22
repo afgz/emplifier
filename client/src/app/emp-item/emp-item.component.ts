@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EmployeeService } from '../shared/services/employee.service';
-import { Employee } from '../shared/model/employee.model'
+import { LocationService } from '../shared/services/location.service';
+import { Employee } from '../shared/model/employee.model';
+import { Location } from '../shared/model/location.model';
 
 @Component({
   selector: 'app-emp-item',
@@ -9,7 +11,7 @@ import { Employee } from '../shared/model/employee.model'
 })
 export class EmpItemComponent implements OnInit {
   @Output() show = new EventEmitter();
-  private employees : Array<Employee>;
+  private employees : Employee[];
 
   constructor(
     private employeeService : EmployeeService

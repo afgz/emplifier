@@ -1,18 +1,18 @@
 #navigation {
-  position: fixed;
   z-index: 10;
 }
 
-#content {
-  padding-top: 64px;
-}
-
 #list, #detail {
-  overflow-y: auto;
+  height: calc(100vh - 64px);
+  overflow-y: scroll;
 }
 
 #addBtn {
   position: fixed;
   bottom: 15px;
   right: 15px;
+}
+
+.fill-space {
+  flex: 1 1 auto;
 }

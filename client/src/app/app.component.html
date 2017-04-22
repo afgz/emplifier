@@ -1,14 +1,20 @@
-<md-toolbar id="navigation" class="mat-elevation-z4" color="primary">
+<md-toolbar id="navigation" color="primary">
   <span>Emplifier</span>
+  <span class="fill-space"></span>
+  <md-input-container>
+	<input mdInput value="Sushi">
+	</md-input-container>
+  <span class="fill-space"></span>
+  <md-icon>add_circle</md-icon>
 </md-toolbar>
 
 <div id="content" fxLayout="row">
-	<div id="list" fxFlex = "25%">
+	<div id="list" fxFlex = "25%" fxFlex.md = "33.33%">
     <app-emp-item
 	(show)="onSelected($event)"></app-emp-item>
 	</div>
 
-	<div id="detail" fxFlex = "75%">
+	<div id="detail" fxFlex = "75%" fxFlex.md = "66.66%">
     <app-emp-detail
 	[employee]="selectedEmployee" *ngIf="selectedEmployee"></app-emp-detail>
 	</div>
