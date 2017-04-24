@@ -1,0 +1,3 @@
+2017-04-24 16:02:36 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "GENDER VARCHAR(6) NOT NULL": "'afasfsa' (7)"; SQL statement:
+insert into employee (division, dob, email, first_name, gender, grade, hired_date, image_url, last_name, location_id, marital_status, nationality, phone, status, sub_division, suspend_date, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [22001-193]

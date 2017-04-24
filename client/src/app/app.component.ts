@@ -6,42 +6,49 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [
-    trigger('state', [
-      state('in', style({
+    trigger('searchBarState', [
+      state('show', style({
         transform: 'translate3d(0, 0, 0)'
       })),
-      state('out', style({
-        transform: 'translate3d(100%, 0, 0)'
+      state('void', style({
+        transform: 'translate3d(0, -100%, 0)'
       })),
-      transition('in <=> out', animate('200ms ease-in-out'))
+      transition('* <=> void', animate('300ms ease-in-out'))
     ]),
-    trigger('listState', [
-      state('in', style({
+    trigger('addFormState', [
+      state('show', style({
         transform: 'translate3d(0, 0, 0)'
       })),
-      state('out', style({
-        transform: 'translate3d(-50%, 0, 0)'
+      state('void', style({
+        transform: 'translate3d(0, -100%, 0)'
       })),
-      transition('in <=> out', animate('200ms ease-in-out'))
+      transition('* <=> void', animate('300ms ease-in-out'))
+    ]),
+    trigger('wrapperState', [
+      state('show', style({
+        opacity: .87
+      })),
+      state('void', style({
+        opacity: 0
+      })),
+      transition('* <=> void', animate('300ms ease-in-out'))
     ]),
   ]
 })
 export class AppComponent {
-  selectedEmployee;
+  private selectedEmployee;
+  private addForm = null;
+  private searchBar = null;
 
-  showForm = 'out';
-  formCol = 0;
-
-  toggle() {
-    this.formCol = 0;
-  };
-
-  toggleForm() {
-    this.showForm = (this.showForm === 'in' ? 'out' : 'in');
+  toggleAddForm() {
+    this.addForm = (this.addForm === null ? 'show' : null);
   }
 
-  onSelected(employee) {
-    this.selectedEmployee = employee;
-    
+  toggleSearchBar() {
+    this.searchBar = (this.searchBar === null ? 'show' : null);
+  }
+
+  onCancel() {
+    this.addForm = null;
   }
 }

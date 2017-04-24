@@ -1,4 +1,4 @@
-export interface Employee {
+export class Employee {
   id:String;
   firstName:String;
   lastName:String;
@@ -16,4 +16,7 @@ export interface Employee {
   email:String;
   locationId:String;
   imageUrl:String;
+
+  constructor(
+  ) {}
 }

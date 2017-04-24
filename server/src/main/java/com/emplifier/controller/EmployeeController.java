@@ -20,6 +20,12 @@ public class EmployeeController {
 	public Iterable<Employee> getAll() {
 		return employeeRepo.findAll();
 	}
+
+    @GetMapping("/employees/{id}")
+    @ResponseBody
+    public Employee getOne( @PathVariable("id") String id) {
+        return employeeRepo.findOne(id);
+    }
 	
 	@PostMapping("/employees")
 	@ResponseBody

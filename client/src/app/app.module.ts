@@ -7,17 +7,23 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule, MdInputModule, MdSelectModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { EmpItemComponent } from './emp-item/emp-item.component';
+import { EmpDetailComponent } from './emp-detail/emp-detail.component';
+import { EmpFormComponent } from './emp-form/emp-form.component';
+import { EmpAddComponent } from './emp-add/emp-add.component';
 
 import { EmployeeService } from './shared/services/employee.service';
 import { LocationService } from './shared/services/location.service';
-import { EmpDetailComponent } from './emp-detail/emp-detail.component';
+import { UIStateService } from './shared/services/ui-state.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     EmpItemComponent,
-    EmpDetailComponent
+    EmpDetailComponent,
+    EmpFormComponent,
+    EmpAddComponent
   ],
   imports: [
     BrowserModule,
@@ -31,11 +37,13 @@ import { EmpDetailComponent } from './emp-detail/emp-detail.component';
     MdCardModule,
     FlexLayoutModule,
     MdInputModule,
-    MdSelectModule
+    MdSelectModule,
+    AppRoutingModule
   ],
   providers: [
     EmployeeService,
-    LocationService
+    LocationService,
+    UIStateService
   ],
   bootstrap: [AppComponent]
 })
