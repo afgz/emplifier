@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 
@@ -25,10 +25,8 @@ import { Location } from '../shared/model/location.model';
 })
 
 export class EmpItemComponent implements OnInit {
-  @Output() employeeChange = new EventEmitter();
   private employees : Employee[];
   private selectedEmployee;
-  private paramsSubscription;
 
   constructor(
     private employeeService : EmployeeService,
@@ -38,8 +36,11 @@ export class EmpItemComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params
       .subscribe(params => {
-
-        this.employeeService.get()
+        let location = params['location'];
+        if(location.toLowerCase === 'home') {
+          location = '';
+        }
+        this.employeeService.get(location)
           .subscribe(data => this.employees = data);
       });
   }

@@ -7,7 +7,8 @@ import { EmpFormComponent } from './emp-form/emp-form.component';
 import { EmpAddComponent } from './emp-add/emp-add.component';
 
 const appRoutes: Routes = [
-  { path: '', component: EmpItemComponent }
+  { path: ':location', component: EmpItemComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];
 
 @NgModule({

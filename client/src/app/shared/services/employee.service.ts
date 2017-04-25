@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -8,16 +8,19 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import { Employee } from '../model/employee.model';
 
 @Injectable()
-export class EmployeeService {
+export class EmployeeService  {
   private serverURL;
   private selectedEmployee: BehaviorSubject<Employee>;
   private employees: BehaviorSubject<Employee[]>;
+  private filteredEmployees: BehaviorSubject<Employee[]>;
   private employeeStore: Employee[];
+  private filteredEmployeeStore: Employee[];
 
   constructor(private http: Http) {
     this.serverURL = '/api/employees/';
     this.employees = new BehaviorSubject<Employee[]>([]);
     this.selectedEmployee = new BehaviorSubject<Employee>(new Employee);
+    this.filteredEmployees = new BehaviorSubject<Employee[]>([]);
     this.load();
   }
 
@@ -27,10 +30,12 @@ export class EmployeeService {
       .subscribe(data => {
         this.employeeStore = data;
         this.employees.next(this.employeeStore);
+        console.log('load '+this.employeeStore);
       });
   }
 
-  get() {
+  get(location) {
+    console.log('get '+this.employeeStore);
     return this.employees.asObservable();
   }
 
@@ -41,6 +46,8 @@ export class EmployeeService {
   getSelectedEmployee() {
     return this.selectedEmployee.asObservable();
   }
+
+  
 
   post(employee) {
     let body = JSON.stringify(employee);
