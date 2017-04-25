@@ -8,6 +8,10 @@ import { Employee } from '../model/employee.model';
 export class GenderFilterPipe implements PipeTransform {
 
   transform(employees: Employee[], gender: string): Employee[] {
+    if (employees == null) {
+      return null;
+    }
+
     return employees.filter(employee =>
       employee.gender.toLowerCase() === gender
     );

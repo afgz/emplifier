@@ -4,7 +4,7 @@
     <md-option *ngFor="let location of locations" [value]="location.id">{{ location.city }}</md-option>
   </md-select>
 </md-card>
-<md-card *ngFor="let employee of ( employees | lastnameSearch:'' | lastnameSort:'' | locationFilter:'' | genderFilter:'')"
+<md-card *ngFor="let employee of ( employees | lastnameSearch:'' | lastnameSort:'ascending' | locationFilter:'' | genderFilter:'')"
 (click)="onSelect(employee)">
     <md-card-header>
       <div md-card-avatar>

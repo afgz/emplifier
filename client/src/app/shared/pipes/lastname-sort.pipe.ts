@@ -8,10 +8,14 @@ import { Employee } from '../model/employee.model';
 export class LastnameSortPipe implements PipeTransform {
 
   transform(employees: Employee[], order: string): Employee[] {
+    if (employees == null) {
+      return null;
+    }
+
     if (order === 'ascending') {
-      console.log(employees);
       return employees.sort((a,b) => {
         if (a.lastName > b.lastName || a.firstName > b.firstName) {
+          console.log(employees);
           return 1;
         } else if (a.lastName < b.lastName || a.firstName < b.firstName) {
           return -1;
