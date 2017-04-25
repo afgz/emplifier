@@ -30,12 +30,10 @@ export class EmployeeService  {
       .subscribe(data => {
         this.employeeStore = data;
         this.employees.next(this.employeeStore);
-        console.log('load '+this.employeeStore);
       });
   }
 
-  get(location) {
-    console.log('get '+this.employeeStore);
+  get() {
     return this.employees.asObservable();
   }
 
@@ -47,7 +45,7 @@ export class EmployeeService  {
     return this.selectedEmployee.asObservable();
   }
 
-  
+
 
   post(employee) {
     let body = JSON.stringify(employee);

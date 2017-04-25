@@ -18,7 +18,6 @@ export class EmpDetailComponent implements OnInit {
     this.employeeService.getSelectedEmployee()
       .subscribe(data => {
         this.employee = data;
-        console.log(this.employee);
       });
   }
 

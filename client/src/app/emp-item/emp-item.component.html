@@ -1,4 +1,10 @@
-<md-card *ngFor="let employee of employees"
+<md-card>
+  <md-select placeholder="Location" (change)="filterCity($event)">
+    <md-option value="" selected>All</md-option>
+    <md-option *ngFor="let location of locations" [value]="location.id">{{ location.city }}</md-option>
+  </md-select>
+</md-card>
+<md-card *ngFor="let employee of ( employees | lastnameSearch:'' | lastnameSort:'' | locationFilter:'' | genderFilter:'')"
 (click)="onSelect(employee)">
     <md-card-header>
       <div md-card-avatar>
@@ -6,7 +12,7 @@
       </div>
       <md-card-title>{{ employee.firstName }} {{ employee.lastName }}</md-card-title>
       <md-card-subtitle>{{ employee.grade }}, {{ employee.division }}</md-card-subtitle>
-      <md-card-subtitle>{{ employee.phone }}</md-card-subtitle>
+      <md-card-subtitle>{{ employee.locationId }}, {{ employee.phone }}</md-card-subtitle>
     </md-card-header>
 
     <md-card-actions @cardState *ngIf="employee.id == selected">

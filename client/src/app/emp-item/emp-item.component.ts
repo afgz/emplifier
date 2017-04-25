@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { EmployeeService } from '../shared/services/employee.service';
 import { LocationService } from '../shared/services/location.service';
@@ -26,27 +26,31 @@ import { Location } from '../shared/model/location.model';
 
 export class EmpItemComponent implements OnInit {
   private employees : Employee[];
-  private selectedEmployee;
+  private locations : Location[];
+  private selectedLocation : String;
+  private selectedEmployee : Employee;
 
   constructor(
     private employeeService : EmployeeService,
-    private activatedRoute : ActivatedRoute
+    private locationService : LocationService,
+    private activatedRoute : ActivatedRoute,
+    private router : Router
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params
-      .subscribe(params => {
-        let location = params['location'];
-        if(location.toLowerCase === 'home') {
-          location = '';
-        }
-        this.employeeService.get(location)
-          .subscribe(data => this.employees = data);
-      });
+    this.employeeService.get()
+      .subscribe(data => this.employees = data);
+
+    this.locationService.get()
+      .subscribe(data => this.locations = data);
   }
 
   onSelect(employee) {
     this.employeeService.selectEmployee(employee);
+  }
+
+  filterCity(args) {
+    this.router.navigate(['/'+args.value]);
   }
 
 }

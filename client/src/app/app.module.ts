@@ -16,7 +16,11 @@ import { EmpAddComponent } from './emp-add/emp-add.component';
 import { EmployeeService } from './shared/services/employee.service';
 import { LocationService } from './shared/services/location.service';
 import { UIStateService } from './shared/services/ui-state.service';
-import { EmpSearchBarComponent } from './emp-search-bar/emp-search-bar.component'
+import { EmpSearchBarComponent } from './emp-search-bar/emp-search-bar.component';
+import { LocationFilterPipe } from './shared/pipes/location-filter.pipe';
+import { LastnameSearchPipe } from './shared/pipes/lastname-search.pipe';
+import { GenderFilterPipe } from './shared/pipes/gender-filter.pipe';
+import { LastnameSortPipe } from './shared/pipes/lastname-sort.pipe'
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { EmpSearchBarComponent } from './emp-search-bar/emp-search-bar.component
     EmpDetailComponent,
     EmpFormComponent,
     EmpAddComponent,
-    EmpSearchBarComponent
+    EmpSearchBarComponent,
+    LocationFilterPipe,
+    LastnameSearchPipe,
+    GenderFilterPipe,
+    LastnameSortPipe
   ],
   imports: [
     BrowserModule,
