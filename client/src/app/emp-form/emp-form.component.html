@@ -1,5 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="add(form.value)" fxLayout="row">
-  <div fxFlex="50%">
+  <div fxFlex="20%">
+    <img class="avatar-img" src="{{ employee.imageUrl }}/?v={{ employee.id }}" alt="image">
+    <input name="imageUrl" id="imageUrl" type="file" placeholder="Photo" formControlName="imageUrl" (change)="onSelectPhoto($event)" />
+  </div>
+
+  <div fxFlex="40%">
     <input type="hidden" name="id" id="id" formControlName="id" [(ngModel)]="employee.id">
     <md-input-container>
       <input name="firstName" id="firstName" mdInput placeholder="First Name" formControlName="firstName" [ngModel]="employee.firstName">
@@ -34,7 +39,7 @@
     </md-select>
   </div>
 
-  <div fxFlex="50%">
+  <div fxFlex="40%">
     <md-input-container>
       <input name="subDivision" id="subDivision" mdInput placeholder="Sub Division" formControlName="subDivision" [ngModel]="employee.subDivision">
     </md-input-container>

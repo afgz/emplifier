@@ -16,7 +16,4 @@ export class Employee {
   email:String;
   locationId:String;
   imageUrl:String;
-
-  constructor(
-  ) {}
 }

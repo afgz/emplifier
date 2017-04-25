@@ -1,4 +1,4 @@
-drop table if exists location, employees;
+drop table if exists location, employee;
 
 create table location (
 	id varchar(255) not null,

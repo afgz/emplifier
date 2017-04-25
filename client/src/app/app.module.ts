@@ -15,7 +15,8 @@ import { EmpAddComponent } from './emp-add/emp-add.component';
 
 import { EmployeeService } from './shared/services/employee.service';
 import { LocationService } from './shared/services/location.service';
-import { UIStateService } from './shared/services/ui-state.service'
+import { UIStateService } from './shared/services/ui-state.service';
+import { EmpSearchBarComponent } from './emp-search-bar/emp-search-bar.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UIStateService } from './shared/services/ui-state.service'
     EmpItemComponent,
     EmpDetailComponent,
     EmpFormComponent,
-    EmpAddComponent
+    EmpAddComponent,
+    EmpSearchBarComponent
   ],
   imports: [
     BrowserModule,

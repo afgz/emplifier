@@ -1,4 +1,4 @@
-export interface Location {
+export class Location {
   id:String;
   city:String;
 }

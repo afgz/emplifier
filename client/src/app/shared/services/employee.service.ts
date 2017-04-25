@@ -56,7 +56,6 @@ export class EmployeeService {
           this.employeeStore.forEach((emp, i) => {
             if (emp.id === employee.id) {
               this.employeeStore[i] = data;
-              console.log("update");
             }
           })
         }

@@ -15,7 +15,7 @@ import { Location } from '../shared/model/location.model';
 })
 
 export class EmpFormComponent implements OnInit {
-  @Input() employee = new Employee;
+  @Input() employee : Employee = new Employee;
   private locations : Location[];
   private form;
 
@@ -33,6 +33,7 @@ export class EmpFormComponent implements OnInit {
 
     this.form = this.formBuilder.group({
 
+      imageUrl: this.formBuilder.control(''),
       id: this.formBuilder.control(''),
       firstName: this.formBuilder.control(''),
       lastName: this.formBuilder.control(''),
