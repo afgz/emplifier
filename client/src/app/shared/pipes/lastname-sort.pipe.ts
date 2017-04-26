@@ -8,26 +8,34 @@ import { Employee } from '../model/employee.model';
 export class LastnameSortPipe implements PipeTransform {
 
   transform(employees: Employee[], order: string): Employee[] {
-    if (employees == null) {
-      return null;
+    
+    if (!order) {
+      console.log('no order');
+      return employees;
     }
 
-    if (order === 'ascending') {
+    if (order === 'asc') {
       return employees.sort((a,b) => {
-        if (a.lastName > b.lastName || a.firstName > b.firstName) {
-          console.log(employees);
+        if (a.lastName.toLowerCase() > b.lastName.toLowerCase()) {
           return 1;
-        } else if (a.lastName < b.lastName || a.firstName < b.firstName) {
+        } else if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+          return -1;
+        } else if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) {
+          return 1;
+        } else if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) {
           return -1;
         }
         return 0;
       });
-    } else if (order === 'descending'){
-      console.log('descending');
+    } else if (order === 'desc'){
       return employees.sort((a,b) => {
-        if (a.lastName > b.lastName || a.firstName > b.firstName) {
+        if (a.lastName.toLowerCase() > b.lastName.toLowerCase()) {
           return -1;
-        } else if (a.lastName < b.lastName || a.firstName < b.firstName) {
+        } else if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+          return 1;
+        } else if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) {
+          return -1;
+        } else if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) {
           return 1;
         }
         return 0;

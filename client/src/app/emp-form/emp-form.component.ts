@@ -1,12 +1,15 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { EmployeeService } from '../shared/services/employee.service';
 import { LocationService } from '../shared/services/location.service';
+import { UIStateService } from '../shared/services/ui-state.service';
 import { Employee } from '../shared/model/employee.model';
 import { Location } from '../shared/model/location.model';
+import { UIState } from '../shared/model/ui-state.model';
 
 @Component({
   selector: 'app-emp-form',
@@ -16,20 +19,20 @@ import { Location } from '../shared/model/location.model';
 
 export class EmpFormComponent implements OnInit {
   @Input() employee : Employee = new Employee;
-  private locations : Location[];
+  private locations : Observable<Location[]>;
   private form;
 
   constructor(
     private employeeService : EmployeeService,
     private locationService : LocationService,
+    private stateService : UIStateService,
     private formBuilder : FormBuilder,
     private router : Router
   ) {}
 
   ngOnInit() {
 
-    this.locationService.get()
-      .subscribe(response => this.locations = response);
+    this.locations = this.locationService.get();
 
     this.form = this.formBuilder.group({
 
@@ -56,6 +59,13 @@ export class EmpFormComponent implements OnInit {
 
   add(employee) {
     this.employeeService.post(employee);
+    if (!employee.id) {
+      
+    }
+  }
+
+  cancel() {
+    this.stateService.toggleAddForm();
   }
 
 }

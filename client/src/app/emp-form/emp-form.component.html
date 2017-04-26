@@ -35,7 +35,7 @@
     </md-input-container>
 
     <md-select name="locationId" id="locationId" placeholder="Location" formControlName="locationId" [ngModel]="employee.locationId">
-      <md-option *ngFor="let location of locations" [value]="location.id">{{ location.city }}</md-option>
+      <md-option *ngFor="let location of locations | async" [value]="location.id">{{ location.city }}</md-option>
     </md-select>
   </div>
 
@@ -69,7 +69,7 @@
     </md-input-container>
 
     <button md-button type="submit" [disabled]="!form.valid" color="primary">Save</button>
-    <button md-button>Cancel</button>
+    <button *ngIf="!employee.id" md-button type="button" (click)="cancel()">Cancel</button>
   </div>
 
 </form>

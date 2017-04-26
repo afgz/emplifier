@@ -1,22 +1,53 @@
-<div id="wrapper" @wrapperState *ngIf="addForm"></div>
+<div id="wrapper" @wrapperState *ngIf="state.addForm" (click)="toggleAddForm()"></div>
 
 <md-toolbar id="navigation" color="primary" class="mat-elevation-z2">
   <span>Emplifier</span>
   <span class="fill-space"></span>
   <button md-fab (click)="toggleSearchBar()"><md-icon>search</md-icon></button>
   <button md-fab (click)="toggleAddForm()"><md-icon>add</md-icon></button>
+  <button md-fab [mdMenuTriggerFor]="gender">
+    <md-icon>wc</md-icon>
+  </button>
+  <md-menu #gender="mdMenu">
+    <button md-menu-item (click)="filterAll()">
+      <md-icon>dialpad</md-icon>
+      <span>All</span>
+    </button>
+    <button md-menu-item (click)="filterMale()">
+      <md-icon>voicemail</md-icon>
+      <span>Male</span>
+    </button>
+    <button md-menu-item (click)="filterFemale()">
+      <md-icon>notifications_off</md-icon>
+      <span>Female</span>
+    </button>
+  </md-menu>
+
+  <button md-fab [mdMenuTriggerFor]="sort">
+    <md-icon>sort_by_alpha</md-icon>
+  </button>
+  <md-menu #sort="mdMenu">
+    <button md-menu-item (click)="sortAscending()">
+      <md-icon>voicemail</md-icon>
+      <span>Ascending</span>
+    </button>
+    <button md-menu-item (click)="sortDescending()">
+      <md-icon>notifications_off</md-icon>
+      <span>Descending</span>
+    </button>
+  </md-menu>
 </md-toolbar>
 
-<md-toolbar id="searchBar" @searchBarState *ngIf="searchBar" class="mat-elevation-z1">
-  <md-input-container>
-    <md-icon mdPrefix>search </md-icon>
-    <input name="search" id="search" mdInput>
-  </md-input-container>
+<md-toolbar id="searchBar" @searchBarState *ngIf="state.searchBar" class="mat-elevation-z1">
+    <md-input-container>
+      <md-icon mdPrefix>search </md-icon>
+      <input name="search" #search mdInput (keyup)="onType(search)">
+    </md-input-container>
 </md-toolbar>
 
 <section id="content" fxLayout="row">
-
-  <section id="add" @addFormState *ngIf="addForm" fxFlex = "90%" fxFlex.md = "100%">
+  
+  <section id="add" @addFormState *ngIf="state.addForm" fxFlex = "90%" fxFlex.md = "100%">
     <app-emp-add></app-emp-add>
 	</section>
 

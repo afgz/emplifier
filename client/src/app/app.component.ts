@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Observable } from 'rxjs/Observable';
+
+import { UIStateService } from './shared/services/ui-state.service';
+import { UIState } from './shared/model/ui-state.model';
 
 @Component({
   selector: 'app-root',
@@ -35,20 +39,51 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     ]),
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private selectedEmployee;
+  private state : UIState;
+
   private addForm = null;
   private searchBar = null;
 
+  constructor(
+    private stateService : UIStateService
+  ) {}
+
+  ngOnInit() {
+    this.stateService.get()
+      .subscribe(data => this.state = data);
+  }
+
   toggleAddForm() {
-    this.addForm = (this.addForm === null ? 'show' : null);
+    this.stateService.toggleAddForm();
   }
 
   toggleSearchBar() {
-    this.searchBar = (this.searchBar === null ? 'show' : null);
+    this.stateService.toggleSearchBar();
   }
 
-  onCancel() {
-    this.addForm = null;
+  onType(search) {
+    this.stateService.setSearchQuery(search.value);
+  }
+
+  filterAll() {
+    this.stateService.setGender('');
+  }
+
+  filterMale() {
+    this.stateService.setGender('male');
+  }
+
+  filterFemale() {
+    this.stateService.setGender('female')
+  }
+
+  sortAscending() {
+    this.stateService.setSortOrder('asc');
+  }
+
+  sortDescending() {
+    this.stateService.setSortOrder('desc');
   }
 }

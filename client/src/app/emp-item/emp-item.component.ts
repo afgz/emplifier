@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { EmployeeService } from '../shared/services/employee.service';
 import { LocationService } from '../shared/services/location.service';
+import { UIStateService } from '../shared/services/ui-state.service';
 import { Employee } from '../shared/model/employee.model';
 import { Location } from '../shared/model/location.model';
+import { UIState } from '../shared/model/ui-state.model';
 
 @Component({
   selector: 'app-emp-item',
@@ -25,24 +28,24 @@ import { Location } from '../shared/model/location.model';
 })
 
 export class EmpItemComponent implements OnInit {
-  private employees : Employee[];
-  private locations : Location[];
+  private employees$ : Observable<Employee[]>;
+  private locations$ : Observable<Location[]>;
+  private state$ : Observable<UIState>;
   private selectedLocation : String;
   private selectedEmployee : Employee;
 
   constructor(
     private employeeService : EmployeeService,
     private locationService : LocationService,
+    private stateService : UIStateService,
     private activatedRoute : ActivatedRoute,
     private router : Router
   ) {}
 
   ngOnInit() {
-    this.employeeService.get()
-      .subscribe(data => this.employees = data);
-
-    this.locationService.get()
-      .subscribe(data => this.locations = data);
+    this.employees$ = this.employeeService.get();
+    this.locations$ = this.locationService.get();
+    this.state$ = this.stateService.get();
   }
 
   onSelect(employee) {
@@ -50,7 +53,7 @@ export class EmpItemComponent implements OnInit {
   }
 
   filterCity(args) {
-    this.router.navigate(['/'+args.value]);
+    this.stateService.setLocation(args.value);
   }
 
 }

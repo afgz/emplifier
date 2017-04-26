@@ -8,8 +8,10 @@ import { Employee } from '../model/employee.model';
 export class GenderFilterPipe implements PipeTransform {
 
   transform(employees: Employee[], gender: string): Employee[] {
-    if (employees == null) {
+    if (!employees) {
       return null;
+    } else if (!gender) {
+      return employees;
     }
 
     return employees.filter(employee =>

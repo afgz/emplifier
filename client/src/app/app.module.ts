@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule, MdInputModule, MdSelectModule } from '@angular/material';
+import { MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule, MdInputModule, MdSelectModule, MdSnackBarModule, MdMenuModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,11 +16,11 @@ import { EmpAddComponent } from './emp-add/emp-add.component';
 import { EmployeeService } from './shared/services/employee.service';
 import { LocationService } from './shared/services/location.service';
 import { UIStateService } from './shared/services/ui-state.service';
-import { EmpSearchBarComponent } from './emp-search-bar/emp-search-bar.component';
 import { LocationFilterPipe } from './shared/pipes/location-filter.pipe';
 import { LastnameSearchPipe } from './shared/pipes/lastname-search.pipe';
 import { GenderFilterPipe } from './shared/pipes/gender-filter.pipe';
-import { LastnameSortPipe } from './shared/pipes/lastname-sort.pipe'
+import { LastnameSortPipe } from './shared/pipes/lastname-sort.pipe';
+import { SearchBarComponent } from './search-bar/search-bar.component'
 
 @NgModule({
   declarations: [
@@ -29,11 +29,11 @@ import { LastnameSortPipe } from './shared/pipes/lastname-sort.pipe'
     EmpDetailComponent,
     EmpFormComponent,
     EmpAddComponent,
-    EmpSearchBarComponent,
     LocationFilterPipe,
     LastnameSearchPipe,
     GenderFilterPipe,
-    LastnameSortPipe
+    LastnameSortPipe,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +48,8 @@ import { LastnameSortPipe } from './shared/pipes/lastname-sort.pipe'
     FlexLayoutModule,
     MdInputModule,
     MdSelectModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MdMenuModule
   ],
   providers: [
     EmployeeService,
