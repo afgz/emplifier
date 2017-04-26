@@ -8,10 +8,9 @@ import { Component } from '@angular/core';
 })
 export class DeleteDialogComponent {
 
-  public title: string;
   public message: string;
 
-  constructor(public dialogRef: MdDialogRef<DeleteDialogComponent>) {
+  constructor(public dialogRef: MdDialogRef<any>) {
 
   }
 

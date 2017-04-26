@@ -40,50 +40,13 @@ import { UIState } from './shared/model/ui-state.model';
   ]
 })
 export class AppComponent implements OnInit {
-  private selectedEmployee;
-  private state : UIState;
-
-  private addForm = null;
-  private searchBar = null;
+  private state$ : Observable<UIState>;
 
   constructor(
     private stateService : UIStateService
   ) {}
 
   ngOnInit() {
-    this.stateService.get()
-      .subscribe(data => this.state = data);
-  }
-
-  toggleAddForm() {
-    this.stateService.toggleAddForm();
-  }
-
-  toggleSearchBar() {
-    this.stateService.toggleSearchBar();
-  }
-
-  onType(search) {
-    this.stateService.setSearchQuery(search.value);
-  }
-
-  filterAll() {
-    this.stateService.setGender('');
-  }
-
-  filterMale() {
-    this.stateService.setGender('male');
-  }
-
-  filterFemale() {
-    this.stateService.setGender('female')
-  }
-
-  sortAscending() {
-    this.stateService.setSortOrder('asc');
-  }
-
-  sortDescending() {
-    this.stateService.setSortOrder('desc');
+    this.state$ = this.stateService.get();
   }
 }

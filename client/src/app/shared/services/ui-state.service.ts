@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
@@ -12,7 +11,6 @@ import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.compone
 export class UIStateService {
   private states: BehaviorSubject<UIState>;
   private _states: UIState;
-  private dialog: MdDialog;
 
   constructor() {
     this.states = new BehaviorSubject<UIState>(new UIState());
@@ -77,18 +75,6 @@ export class UIStateService {
       this._states.notification = ''
     ), 3000;
     this.states.next(this._states);
-  }
-
-  confirmDelete(title, message) : Observable<boolean> {
-    debugger;
-    let dialogRef: MdDialogRef<DeleteDialogComponent>;
-
-    dialogRef = this.dialog.open(DeleteDialogComponent);
-
-    dialogRef.componentInstance.title = title;
-    dialogRef.componentInstance.message = message;
-
-    return dialogRef.afterClosed();
   }
 
 }

@@ -4,10 +4,9 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule, MdInputModule, MdSelectModule, MdSnackBarModule, MdMenuModule } from '@angular/material';
+import { MdDialogModule, MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule, MdInputModule, MdSelectModule, MdSnackBarModule, MdMenuModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { EmpItemComponent } from './emp-item/emp-item.component';
 import { EmpDetailComponent } from './emp-detail/emp-detail.component';
 import { EmpFormComponent } from './emp-form/emp-form.component';
@@ -21,7 +20,8 @@ import { LastnameSearchPipe } from './shared/pipes/lastname-search.pipe';
 import { GenderFilterPipe } from './shared/pipes/gender-filter.pipe';
 import { LastnameSortPipe } from './shared/pipes/lastname-sort.pipe';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component'
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { NavbarComponent } from './navbar/navbar.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component'
     GenderFilterPipe,
     LastnameSortPipe,
     SearchBarComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -50,13 +51,13 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component'
     FlexLayoutModule,
     MdInputModule,
     MdSelectModule,
-    AppRoutingModule,
-    MdMenuModule
+    MdMenuModule,
+    MdDialogModule.forRoot()
   ],
   providers: [
     EmployeeService,
     LocationService,
-    UIStateService
+    UIStateService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

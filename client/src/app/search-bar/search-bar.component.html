@@ -1,3 +1,6 @@
-<p>
-  search-bar works!
-</p>
+<md-toolbar class="mat-elevation-z1">
+    <md-input-container>
+      <md-icon mdPrefix>search </md-icon>
+      <input name="search" #search mdInput (keyup)="onType(search)">
+    </md-input-container>
+</md-toolbar>

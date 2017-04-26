@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -18,7 +17,7 @@ import { UIState } from '../shared/model/ui-state.model';
 })
 
 export class EmpFormComponent implements OnInit {
-  @Input() employee : Employee = new Employee;
+  @Input() employee$ : Observable<Employee>;
   private locations : Observable<Location[]>;
   private form;
 
@@ -26,12 +25,10 @@ export class EmpFormComponent implements OnInit {
     private employeeService : EmployeeService,
     private locationService : LocationService,
     private stateService : UIStateService,
-    private formBuilder : FormBuilder,
-    private router : Router
+    private formBuilder : FormBuilder
   ) {}
 
   ngOnInit() {
-
     this.locations = this.locationService.get();
 
     this.form = this.formBuilder.group({
@@ -58,10 +55,7 @@ export class EmpFormComponent implements OnInit {
   }
 
   add(employee) {
-    this.employeeService.post(employee);
-    if (!employee.id) {
-      
-    }
+    this.employeeService.save(employee);
   }
 
   cancel() {

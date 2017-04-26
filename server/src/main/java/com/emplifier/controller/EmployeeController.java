@@ -17,19 +17,28 @@ public class EmployeeController {
 	
 	@GetMapping("/employees")
 	@ResponseBody
-	public Iterable<Employee> getAll() {
+	public Iterable<Employee> getEmployees() {
+
 		return employeeRepo.findAll();
 	}
-
-    @GetMapping("/employees/{id}")
-    @ResponseBody
-    public Employee getOne( @PathVariable("id") String id) {
-        return employeeRepo.findOne(id);
-    }
 	
 	@PostMapping("/employees")
 	@ResponseBody
-	public Employee postEmployee( @RequestBody Employee employee ) {
+	public Employee createEmployee( @RequestBody Employee employee ) {
+
 		return employeeRepo.save(employee);
+	}
+
+	@PutMapping("/employees")
+	@ResponseBody
+	public Employee updateEmployee( @RequestBody Employee employee ) {
+
+		return employeeRepo.save(employee);
+	}
+
+	@DeleteMapping("/employees/{id}")
+	@ResponseBody
+	public void deleteEmployee( @PathVariable("id") String id) {
+		employeeRepo.delete(id);
 	}
 }

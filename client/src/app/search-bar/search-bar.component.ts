@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { UIStateService } from '../shared/services/ui-state.service';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css']
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent {
 
-  constructor() { }
+  constructor(
+    private stateService : UIStateService
+  ) { }
 
-  ngOnInit() {
+  onType(search) {
+    this.stateService.setSearchQuery(search.value);
   }
 
 }

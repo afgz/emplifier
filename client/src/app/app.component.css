@@ -1,4 +1,4 @@
-#navigation {
+#navbar {
   position: relative;
   z-index: 10;
 }
@@ -22,28 +22,8 @@
   margin-left: auto;
 }
 
-.fill-space {
-  flex: 1 1 auto;
-}
-
-button {
-  background-color: transparent;
-  color: rgba(255, 255, 255, .87);
-  box-shadow: none;
-}
-
-button span {
-  color: rgba(0, 0, 0, .87);
-}
-
 md-toolbar-row {
   background: #FFFFFF;
-}
-
-md-input-container {
-  width: 100%;
-  font-size: 30px;
-  font-weight: 300;
 }
 
 #wrapper {

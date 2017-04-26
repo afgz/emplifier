@@ -1,5 +1,4 @@
-<md-card>
+<md-card *ngIf="(employee$|async).id">
   <app-emp-form
-  [employee]="employee"
-  *ngIf="employee.id != undefined"></app-emp-form>
+  [employee$]="employee$"></app-emp-form>
 </md-card>

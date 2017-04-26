@@ -41,29 +41,29 @@ export class EmployeeService  {
     return this.selectedEmployee.asObservable();
   }
 
-  post(employee) {
+  save(employee) {
     let body = JSON.stringify(employee);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    this.http.post(this.serverURL, body, options)
-      .map(response => response.json())
-      .subscribe(data => {
-        if (employee.id == null) {
-          this.employeeStore.push(data);
-        } else {
-          this.employeeStore.forEach((emp, i) => {
-            if (emp.id === employee.id) {
-              this.employeeStore[i] = data;
-            }
+    if (!employee.id) {
+      this.http.post(this.serverURL, body, options)
+        .map(response => response.json())
+        .subscribe(data => this.employeeStore.push(data))
+    } else {
+      this.http.put(this.serverURL, body, options)
+        .map(response => response.json())
+        .subscribe(data => this.employeeStore
+          .forEach((emp, i) => {
+            if (emp.id === employee.id) { this.employeeStore[i] = data; }
           })
-        }
-        this.employees.next(this.employeeStore);
-      });
+        )
+    }
+    this.employees.next(this.employeeStore);
   }
 
   delete(empId) {
-    this.http.delete(this.serverURL)
+    this.http.delete(this.serverURL+empId)
       .subscribe(response => {
         this.employeeStore.forEach((emp, i) => {
           if (emp.id === empId) {

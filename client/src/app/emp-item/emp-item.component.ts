@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 import { EmployeeService } from '../shared/services/employee.service';
 import { LocationService } from '../shared/services/location.service';
 import { UIStateService } from '../shared/services/ui-state.service';
@@ -33,15 +34,15 @@ export class EmpItemComponent implements OnInit {
   private state$ : Observable<UIState>;
   private selectedLocation : String;
   private selectedEmployeeID : Employee;
-  private result;
+  private dialogRef : MdDialogRef<any>;
 
 
   constructor(
     private employeeService : EmployeeService,
     private locationService : LocationService,
     private stateService : UIStateService,
-    private activatedRoute : ActivatedRoute,
-    private router : Router
+    private dialog: MdDialog,
+    private viewContainerRef: ViewContainerRef
   ) {}
 
   ngOnInit() {
@@ -56,14 +57,20 @@ export class EmpItemComponent implements OnInit {
   }
 
   onDelete(empId) {
-    this.stateService
-      .confirmDelete('Confirm Dialog', 'Are you sure you want to do this?')
-      .subscribe(res => {
-        this.result = res;
-        
-      });
-      
-    // this.employeeService.delete(empId);
+    let config = new MdDialogConfig();
+    config.viewContainerRef = this.viewContainerRef;
+
+    this.dialogRef = this.dialog.open(DeleteDialogComponent, config);
+
+    this.dialogRef.componentInstance.message = "Are you sure you want to delete this item?";
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.employeeService.delete(empId);
+      }
+    });
+
+
   }
 
   filterCity(args) {
