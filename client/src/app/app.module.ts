@@ -20,7 +20,8 @@ import { LocationFilterPipe } from './shared/pipes/location-filter.pipe';
 import { LastnameSearchPipe } from './shared/pipes/lastname-search.pipe';
 import { GenderFilterPipe } from './shared/pipes/gender-filter.pipe';
 import { LastnameSortPipe } from './shared/pipes/lastname-sort.pipe';
-import { SearchBarComponent } from './search-bar/search-bar.component'
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component'
     LastnameSearchPipe,
     GenderFilterPipe,
     LastnameSortPipe,
-    SearchBarComponent
+    SearchBarComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,9 @@ import { SearchBarComponent } from './search-bar/search-bar.component'
     LocationService,
     UIStateService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+      DeleteDialogComponent,
+  ]
 })
 export class AppModule { }

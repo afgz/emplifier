@@ -32,7 +32,9 @@ export class EmpItemComponent implements OnInit {
   private locations$ : Observable<Location[]>;
   private state$ : Observable<UIState>;
   private selectedLocation : String;
-  private selectedEmployee : Employee;
+  private selectedEmployeeID : Employee;
+  private result;
+
 
   constructor(
     private employeeService : EmployeeService,
@@ -49,7 +51,19 @@ export class EmpItemComponent implements OnInit {
   }
 
   onSelect(employee) {
+    this.selectedEmployeeID = employee.id;
     this.employeeService.selectEmployee(employee);
+  }
+
+  onDelete(empId) {
+    this.stateService
+      .confirmDelete('Confirm Dialog', 'Are you sure you want to do this?')
+      .subscribe(res => {
+        this.result = res;
+        
+      });
+      
+    // this.employeeService.delete(empId);
   }
 
   filterCity(args) {

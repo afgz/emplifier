@@ -17,7 +17,7 @@
       <md-card-subtitle>{{ employee.locationId }}, {{ employee.phone }}</md-card-subtitle>
     </md-card-header>
 
-    <md-card-actions @cardState *ngIf="employee.id == selected">
-      <button md-button>DELETE</button>
+    <md-card-actions @cardState *ngIf="employee.id === selectedEmployeeID">
+      <button md-button (click)="onDelete(employee.id)">DELETE</button>
     </md-card-actions>
 </md-card>

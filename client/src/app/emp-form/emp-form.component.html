@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="add(form.value)" fxLayout="row">
   <div fxFlex="20%">
     <img class="avatar-img" src="{{ employee.imageUrl }}/?v={{ employee.id }}" alt="image">
-    <input name="imageUrl" id="imageUrl" type="file" placeholder="Photo" formControlName="imageUrl" (change)="onSelectPhoto($event)" />
+    <input #fileInput name="imageUrl" id="imageUrl" type="file" placeholder="Photo" formControlName="imageUrl" (change)="onSelectPhoto($event)" />
   </div>
 
   <div fxFlex="40%">

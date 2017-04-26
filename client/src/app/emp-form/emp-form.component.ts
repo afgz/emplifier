@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -66,6 +66,11 @@ export class EmpFormComponent implements OnInit {
 
   cancel() {
     this.stateService.toggleAddForm();
+  }
+
+  onSelectPhoto(fileInput) {
+    let name = fileInput.target.files[0].name;
+    let photo = fileInput.target.files[0];
   }
 
 }
