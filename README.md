@@ -4,12 +4,11 @@ This repository holds Emplifier, an employee management app that build for Mitra
 
 ## Requirement Specification:
 
-```
-1. Search employee with match counter
-2. Employee list
-3. Employee details
-4. Add employee
-5. Delete employee with confirmation
-6. Sort by last name
-7. Filter based on location and gender
-```
+- View employees
+- Create new employee
+- Update employee information
+- Delete employee
+- Search employee's partial last name with match counter
+- Sort employee by last name
+- Filter based on location
+- Filter based on gender
