@@ -43,8 +43,8 @@ public class Employee {
 	private String email;
 	@Column(name="location_id")
 	private String locationId;
-	@Column(name="image_url", nullable=false)
-	private String imageUrl;
+	@Column(name="photo", nullable=false)
+	private String photo;
 	
 	public Employee(){}
 	
@@ -64,7 +64,7 @@ public class Employee {
 			String division,
 			String email,
 			String locationId,
-			String imageUrl
+			String photo
 	) {
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -81,7 +81,7 @@ public class Employee {
 		setDivision(division);
 		setEmail(email);
 		setLocationId(locationId);
-		setImageUrl(imageUrl);
+		setPhoto(photo);
 	}
 
 	public String getId() {
@@ -208,11 +208,11 @@ public class Employee {
 		this.locationId = locationId;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public String getPhoto() {
+		return photo;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 }
