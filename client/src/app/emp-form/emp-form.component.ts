@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -19,8 +19,11 @@ import { UIState } from '../shared/model/ui-state.model';
 
 export class EmpFormComponent implements OnInit {
   @Input() employee : Employee;
+  @ViewChildren('fileInput') fileInput;
   private locations : Observable<Location[]>;
   private form;
+  private reader;
+  private avatar;
 
   constructor(
     private employeeService : EmployeeService,
@@ -31,11 +34,12 @@ export class EmpFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.avatar = this.employee.photo;
     this.locations = this.locationService.get();
-
+    this.reader = new FileReader();
     this.form = this.formBuilder.group({
 
-      imageUrl: this.formBuilder.control(''),
+      photo: this.formBuilder.control(''),
       id: this.formBuilder.control(''),
       firstName: this.formBuilder.control('', [Validators.required, ValidationService.nameValidator]),
       lastName: this.formBuilder.control('', [Validators.required, ValidationService.nameValidator]),
@@ -56,7 +60,15 @@ export class EmpFormComponent implements OnInit {
     });
   }
 
+  ngOnChanges() {
+    if (this.fileInput) {
+      this.fileInput._results[0].nativeElement.value = '';
+    }
+    this.avatar = this.employee.photo;
+  }
+
   add(employee) {
+    employee.photo = this.avatar;
     this.employeeService.save(employee);
   }
 
@@ -65,8 +77,11 @@ export class EmpFormComponent implements OnInit {
   }
 
   onSelectPhoto(fileInput) {
-    let name = fileInput.target.files[0].name;
-    let photo = fileInput.target.files[0];
+    this.reader.onload = ((input:any) => {
+      this.avatar = input.target.result;
+      console.log(input);
+    })
+    this.reader.readAsDataURL(fileInput.target.files[0]);
   }
 
 }

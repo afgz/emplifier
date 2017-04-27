@@ -10,7 +10,6 @@ import { Employee } from '../model/employee.model';
 export class EmployeeService  {
   private serverURL;
   private selectedEmployee: BehaviorSubject<Employee>;
-  private newEmployee: BehaviorSubject<Employee>;
   private employees: BehaviorSubject<Employee[]>;
   private _employees: Employee[];
 

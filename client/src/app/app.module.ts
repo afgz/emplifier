@@ -4,18 +4,18 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { 
-  MdDialogModule, 
-  MdToolbarModule, 
-  MdGridListModule, 
-  MdButtonModule, 
-  MdIconModule, 
-  MdCardModule, 
-  MdInputModule, 
-  MdSelectModule, 
-  MdSnackBarModule, 
-  MdMenuModule, 
-  MdChipsModule 
+import {
+  MdDialogModule,
+  MdToolbarModule,
+  MdGridListModule,
+  MdButtonModule,
+  MdIconModule,
+  MdCardModule,
+  MdInputModule,
+  MdSelectModule,
+  MdSnackBarModule,
+  MdMenuModule,
+  MdChipsModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -36,7 +36,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AsCityPipe } from './shared/pipes/as-city.pipe';
-import { FilterPanelComponent } from './filter-panel/filter-panel.component'
+import { FilterPanelComponent } from './filter-panel/filter-panel.component';
+import { SafeUrlPipe } from './shared/pipes/safe-url.pipe'
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { FilterPanelComponent } from './filter-panel/filter-panel.component'
     DeleteDialogComponent,
     NavbarComponent,
     AsCityPipe,
-    FilterPanelComponent
+    FilterPanelComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,

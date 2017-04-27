@@ -5,7 +5,9 @@
 
     <md-card-header>
       <div md-card-avatar>
-        <img class="avatar-img" src="{{ employee.imageUrl }}/?v={{ employee.id }}" alt="image">
+        <div class="avatar-img">
+          <img [src]="employee.photo  | safeUrl" alt="image">
+        </div>
       </div>
       <md-card-title>{{ employee.firstName }} {{ employee.lastName }}</md-card-title>
       <md-card-subtitle>{{ employee.grade }}, {{ employee.division }}</md-card-subtitle>

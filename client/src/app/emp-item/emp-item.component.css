@@ -9,9 +9,23 @@ md-card {
 .mat-card-avatar {
   width: 64px;
 }
+
 .avatar-img {
   width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+.avatar-img img {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 button {
