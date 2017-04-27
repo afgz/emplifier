@@ -1,0 +1,47 @@
+<md-card>
+  <button md-fab (click)="toggleSearchBar()"><md-icon>search</md-icon></button>
+
+  <button md-fab [mdMenuTriggerFor]="location">
+    <md-icon>location_on</md-icon>
+  </button>
+  <md-menu #location="mdMenu">
+    <button md-menu-item (click)="filterLocation('')">
+      <span>All</span>
+    </button>
+    <div *ngFor="let location of locations$ | async">
+      <button md-menu-item (click)="filterLocation(location.id)">
+        <span>{{ location.city }}</span>
+      </button>
+    </div>
+  </md-menu>
+
+  <button md-fab [mdMenuTriggerFor]="gender">
+    <md-icon>wc</md-icon>
+  </button>
+  <md-menu #gender="mdMenu">
+    <button md-menu-item (click)="filterAll()">
+      <span>All</span>
+    </button>
+    <button md-menu-item (click)="filterMale()">
+      <span>Male</span>
+    </button>
+    <button md-menu-item (click)="filterFemale()">
+      <span>Female</span>
+    </button>
+  </md-menu>
+
+  <button md-fab [mdMenuTriggerFor]="sort">
+    <md-icon>sort_by_alpha</md-icon>
+  </button>
+  <md-menu #sort="mdMenu">
+    <button md-menu-item (click)="sortAscending()">
+      <span>Ascending</span>
+    </button>
+    <button md-menu-item (click)="sortDescending()">
+      <span>Descending</span>
+    </button>
+  </md-menu>
+  
+  <p>{{(employees$ | async | genderFilter:(state$|async).filter.gender | locationFilter:(state$|async).filter.location | lastnameSearch:(state$|async).searchQuery | lastnameSort:(state$|async).sortOrder).length}} results found</p>
+</md-card>
+

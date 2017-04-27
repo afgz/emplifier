@@ -17,28 +17,4 @@ export class NavbarComponent {
     this.stateService.toggleAddForm();
   }
 
-  toggleSearchBar() {
-    this.stateService.toggleSearchBar();
-  }
-
-  filterAll() {
-    this.stateService.setGender('');
-  }
-
-  filterMale() {
-    this.stateService.setGender('male');
-  }
-
-  filterFemale() {
-    this.stateService.setGender('female')
-  }
-
-  sortAscending() {
-    this.stateService.setSortOrder('asc');
-  }
-
-  sortDescending() {
-    this.stateService.setSortOrder('desc');
-  }
-
 }

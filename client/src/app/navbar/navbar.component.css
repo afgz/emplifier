@@ -7,7 +7,3 @@ button {
   color: rgba(255, 255, 255, .87);
   box-shadow: none;
 }
-
-button span {
-  color: rgba(0, 0, 0, .87);
-}

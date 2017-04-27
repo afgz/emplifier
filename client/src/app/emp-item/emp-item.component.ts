@@ -16,7 +16,7 @@ import { UIState } from '../shared/model/ui-state.model';
   templateUrl: './emp-item.component.html',
   styleUrls: ['./emp-item.component.css'],
   animations: [
-    trigger('cardState', [
+    trigger('deleteState', [
       state('*', style({
         transform: 'translate3d(0, 0, 0)'
       })),
@@ -72,9 +72,4 @@ export class EmpItemComponent implements OnInit {
 
 
   }
-
-  filterCity(args) {
-    this.stateService.setLocation(args.value);
-  }
-
 }

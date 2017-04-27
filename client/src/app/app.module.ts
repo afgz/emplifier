@@ -4,7 +4,19 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdDialogModule, MdToolbarModule, MdGridListModule, MdButtonModule, MdIconModule, MdCardModule, MdInputModule, MdSelectModule, MdSnackBarModule, MdMenuModule } from '@angular/material';
+import { 
+  MdDialogModule, 
+  MdToolbarModule, 
+  MdGridListModule, 
+  MdButtonModule, 
+  MdIconModule, 
+  MdCardModule, 
+  MdInputModule, 
+  MdSelectModule, 
+  MdSnackBarModule, 
+  MdMenuModule, 
+  MdChipsModule 
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { EmpItemComponent } from './emp-item/emp-item.component';
@@ -15,13 +27,16 @@ import { EmpAddComponent } from './emp-add/emp-add.component';
 import { EmployeeService } from './shared/services/employee.service';
 import { LocationService } from './shared/services/location.service';
 import { UIStateService } from './shared/services/ui-state.service';
+import { ValidationService } from './shared/services/validation.service';
 import { LocationFilterPipe } from './shared/pipes/location-filter.pipe';
 import { LastnameSearchPipe } from './shared/pipes/lastname-search.pipe';
 import { GenderFilterPipe } from './shared/pipes/gender-filter.pipe';
 import { LastnameSortPipe } from './shared/pipes/lastname-sort.pipe';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
-import { NavbarComponent } from './navbar/navbar.component'
+import { NavbarComponent } from './navbar/navbar.component';
+import { AsCityPipe } from './shared/pipes/as-city.pipe';
+import { FilterPanelComponent } from './filter-panel/filter-panel.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +51,9 @@ import { NavbarComponent } from './navbar/navbar.component'
     LastnameSortPipe,
     SearchBarComponent,
     DeleteDialogComponent,
-    NavbarComponent
+    NavbarComponent,
+    AsCityPipe,
+    FilterPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -52,12 +69,14 @@ import { NavbarComponent } from './navbar/navbar.component'
     MdInputModule,
     MdSelectModule,
     MdMenuModule,
-    MdDialogModule.forRoot()
+    MdDialogModule.forRoot(),
+    MdChipsModule
   ],
   providers: [
     EmployeeService,
     LocationService,
     UIStateService,
+    ValidationService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

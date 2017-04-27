@@ -10,14 +10,15 @@ import { EmployeeService } from '../shared/services/employee.service';
   styleUrls: ['./emp-detail.component.css']
 })
 export class EmpDetailComponent implements OnInit {
-  private employee$ : Observable<Employee>;
+  private employee;
 
   constructor(
     private employeeService : EmployeeService
   ) {}
 
   ngOnInit() {
-    this.employee$ = this.employeeService.getSelectedEmployee();
+    this.employee = this.employeeService.getSelectedEmployee()
+      .subscribe(data => this.employee = data);
   }
 
 }

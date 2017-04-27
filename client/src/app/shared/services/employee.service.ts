@@ -10,8 +10,9 @@ import { Employee } from '../model/employee.model';
 export class EmployeeService  {
   private serverURL;
   private selectedEmployee: BehaviorSubject<Employee>;
+  private newEmployee: BehaviorSubject<Employee>;
   private employees: BehaviorSubject<Employee[]>;
-  private employeeStore: Employee[];
+  private _employees: Employee[];
 
   constructor(private http: Http) {
     this.serverURL = '/api/employees/';
@@ -24,8 +25,8 @@ export class EmployeeService  {
     this.http.get(this.serverURL)
       .map(response => response.json())
       .subscribe(data => {
-        this.employeeStore = data;
-        this.employees.next(this.employeeStore);
+        this._employees = data;
+        this.employees.next(this._employees);
       });
   }
 
@@ -49,28 +50,28 @@ export class EmployeeService  {
     if (!employee.id) {
       this.http.post(this.serverURL, body, options)
         .map(response => response.json())
-        .subscribe(data => this.employeeStore.push(data))
+        .subscribe(data => this._employees.push(data))
     } else {
       this.http.put(this.serverURL, body, options)
         .map(response => response.json())
-        .subscribe(data => this.employeeStore
+        .subscribe(data => this._employees
           .forEach((emp, i) => {
-            if (emp.id === employee.id) { this.employeeStore[i] = data; }
+            if (emp.id === employee.id) { this._employees[i] = data; }
           })
         )
     }
-    this.employees.next(this.employeeStore);
+    this.employees.next(this._employees);
   }
 
   delete(empId) {
     this.http.delete(this.serverURL+empId)
       .subscribe(response => {
-        this.employeeStore.forEach((emp, i) => {
+        this._employees.forEach((emp, i) => {
           if (emp.id === empId) {
-            this.employeeStore.splice(i, 1);
+            this._employees.splice(i, 1);
           }
         });
-        this.employees.next(this.employeeStore);
+        this.employees.next(this._employees);
       })
   }
 }

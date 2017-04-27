@@ -5,7 +5,6 @@ import 'rxjs/add/operator/map';
 import { BehaviorSubject } from 'rxjs/Rx';
 
 import { UIState } from '../model/ui-state.model';
-import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
 
 @Injectable()
 export class UIStateService {

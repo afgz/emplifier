@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { EmployeeService } from '../shared/services/employee.service';
 import { LocationService } from '../shared/services/location.service';
 import { UIStateService } from '../shared/services/ui-state.service';
+import { ValidationService } from '../shared/services/validation.service';
 import { Employee } from '../shared/model/employee.model';
 import { Location } from '../shared/model/location.model';
 import { UIState } from '../shared/model/ui-state.model';
@@ -17,7 +18,7 @@ import { UIState } from '../shared/model/ui-state.model';
 })
 
 export class EmpFormComponent implements OnInit {
-  @Input() employee$ : Observable<Employee>;
+  @Input() employee : Employee;
   private locations : Observable<Location[]>;
   private form;
 
@@ -25,6 +26,7 @@ export class EmpFormComponent implements OnInit {
     private employeeService : EmployeeService,
     private locationService : LocationService,
     private stateService : UIStateService,
+    private validationService : ValidationService,
     private formBuilder : FormBuilder
   ) {}
 
@@ -35,21 +37,21 @@ export class EmpFormComponent implements OnInit {
 
       imageUrl: this.formBuilder.control(''),
       id: this.formBuilder.control(''),
-      firstName: this.formBuilder.control(''),
-      lastName: this.formBuilder.control(''),
-      gender: this.formBuilder.control(''),
-      dob: this.formBuilder.control(''),
-      nationality: this.formBuilder.control(''),
-      maritalStatus: this.formBuilder.control(''),
-      phone: this.formBuilder.control(''),
-      locationId: this.formBuilder.control(''),
-      subDivision: this.formBuilder.control(''),
-      status: this.formBuilder.control(''),
+      firstName: this.formBuilder.control('', [Validators.required, ValidationService.nameValidator]),
+      lastName: this.formBuilder.control('', [Validators.required, ValidationService.nameValidator]),
+      gender: this.formBuilder.control('', Validators.required),
+      dob: this.formBuilder.control('', Validators.required),
+      nationality: this.formBuilder.control('', [Validators.required, ValidationService.nationalityValidator]),
+      maritalStatus: this.formBuilder.control('', Validators.required),
+      phone: this.formBuilder.control('', [Validators.required, ValidationService.phoneValidator]),
+      locationId: this.formBuilder.control('', Validators.required),
+      subDivision: this.formBuilder.control('', Validators.required),
+      status: this.formBuilder.control('', Validators.required),
       suspendDate: this.formBuilder.control(''),
-      hiredDate: this.formBuilder.control(''),
-      grade: this.formBuilder.control(''),
-      division: this.formBuilder.control(''),
-      email: this.formBuilder.control('')
+      hiredDate: this.formBuilder.control('', Validators.required),
+      grade: this.formBuilder.control('', Validators.required),
+      division: this.formBuilder.control('', Validators.required),
+      email: this.formBuilder.control('', [Validators.required, ValidationService.emailValidator])
 
     });
   }
