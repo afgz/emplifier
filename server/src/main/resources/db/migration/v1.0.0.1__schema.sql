@@ -1,5 +1,3 @@
-drop table if exists location, employee;
-
 create table location (
 	id varchar(255) not null,
 	city varchar(255) not null,

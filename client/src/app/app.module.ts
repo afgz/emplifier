@@ -23,7 +23,6 @@ import { EmpItemComponent } from './emp-item/emp-item.component';
 import { EmpDetailComponent } from './emp-detail/emp-detail.component';
 import { EmpFormComponent } from './emp-form/emp-form.component';
 import { EmpAddComponent } from './emp-add/emp-add.component';
-
 import { EmployeeService } from './shared/services/employee.service';
 import { LocationService } from './shared/services/location.service';
 import { UIStateService } from './shared/services/ui-state.service';
@@ -37,7 +36,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AsCityPipe } from './shared/pipes/as-city.pipe';
 import { FilterPanelComponent } from './filter-panel/filter-panel.component';
-import { SafeUrlPipe } from './shared/pipes/safe-url.pipe'
+import { SafeUrlPipe } from './shared/pipes/safe-url.pipe';
+import { lookupListToken, lookupLists } from './shared/providers';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,8 @@ import { SafeUrlPipe } from './shared/pipes/safe-url.pipe'
     EmployeeService,
     LocationService,
     UIStateService,
-    ValidationService
+    ValidationService,
+    { provide: lookupListToken, useValue: lookupLists }
   ],
   bootstrap: [AppComponent],
   entryComponents: [

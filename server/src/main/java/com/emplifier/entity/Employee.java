@@ -41,8 +41,9 @@ public class Employee {
 	private String division;
 	@Column(name="email", nullable=false)
 	private String email;
-	@Column(name="location_id")
-	private String locationId;
+	@ManyToOne
+	@JoinColumn(name="location_id")
+	private Location locationId;
 	@Column(name="photo", nullable=false)
 	private String photo;
 	
@@ -63,7 +64,7 @@ public class Employee {
 			String grade,
 			String division,
 			String email,
-			String locationId,
+			Location locationId,
 			String photo
 	) {
 		setFirstName(firstName);
@@ -200,11 +201,11 @@ public class Employee {
 		this.email = email;
 	}
 
-	public String getLocationId() {
+	public Location getLocationId() {
 		return locationId;
 	}
 
-	public void setLocationId(String locationId) {
+	public void setLocationId(Location locationId) {
 		this.locationId = locationId;
 	}
 

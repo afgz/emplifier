@@ -7,40 +7,43 @@
   </div>
 
   <div fxFlex="40%">
-    <input type="hidden" name="id" id="id" formControlName="id" [ngModel]="employee?.id">
+    <input type="hidden" formControlName="id" [ngModel]="employee?.id">
     <md-input-container>
       <input mdInput placeholder="First Name" formControlName="firstName" [ngModel]="employee?.firstName">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.firstName.errors?.required">First name is mandatory.</md-error>
+      <md-error *ngIf="form.controls.firstName.errors?.invalidName">First name must contain only alphabets and space.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput placeholder="Last Name" formControlName="lastName" [ngModel]="employee?.lastName">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.lastName.errors?.required">Last name is mandatory.</md-error>
+      <md-error *ngIf="form.controls.lastName.errors?.invalidName">Last name must contain only alphabets and space.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput placeholder="Gender" formControlName="gender" [ngModel]="employee?.gender">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.gender.errors?.required">Gender is mandatory.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput type="date" placeholder="Date of Birth" formControlName="dob" [ngModel]="employee?.dob">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.dob.errors?.required">Date of birth is mandatory.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput placeholder="Nationality" formControlName="nationality" [ngModel]="employee?.nationality">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.nationality.errors?.required">Nationality is mandatory.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput placeholder="Marital Status" formControlName="maritalStatus" [ngModel]="employee?.maritalStatus">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.maritalStatus.errors?.required">Marital status is mandatory.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput type="tel" placeholder="Phone" formControlName="phone" [ngModel]="employee?.phone">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.phone.errors?.required">Phone is mandatory.</md-error>
+      <md-error *ngIf="form.controls.phone.errors?.invalidPhone">Phone must contain only numeric characters.</md-error>
     </md-input-container>
 
     <md-select placeholder="Location" formControlName="locationId" [ngModel]="employee?.locationId">
@@ -51,12 +54,12 @@
   <div fxFlex="40%">
     <md-input-container>
       <input mdInput placeholder="Sub Division" formControlName="subDivision" [ngModel]="employee?.subDivision">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.subDivision.errors?.required">Sub division is mandatory.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput placeholder="Status" formControlName="status" [ngModel]="employee?.status">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.status.errors?.required">Status is mandatory.</md-error>
     </md-input-container>
 
     <md-input-container>
@@ -65,22 +68,23 @@
 
     <md-input-container>
       <input mdInput type="date" placeholder="Hired Date" formControlName="hiredDate" [ngModel]="employee?.hiredDate">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.hiredDate.errors?.required">Hired date is mandatory.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput placeholder="Grade" formControlName="grade" [ngModel]="employee?.grade">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.grade.errors?.required">Grade is mandatory.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput placeholder="Division" formControlName="division" [ngModel]="employee?.division">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.division.errors?.required">Division is mandatory.</md-error>
     </md-input-container>
 
     <md-input-container>
       <input mdInput type="email" placeholder="E-mail" formControlName="email" [ngModel]="employee?.email">
-      <md-error>Required</md-error>
+      <md-error *ngIf="form.controls.email.errors?.required">E-mail is mandatory.</md-error>
+      <md-error *ngIf="form.controls.email.errors?.invalidEmail">E-mail address pattern is invalid.</md-error>
     </md-input-container>
 
     <button md-button type="submit" [disabled]="!form.valid" color="primary">Save</button>

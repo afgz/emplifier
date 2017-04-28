@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef, Input, Inject  } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -10,6 +10,7 @@ import { ValidationService } from '../shared/services/validation.service';
 import { Employee } from '../shared/model/employee.model';
 import { Location } from '../shared/model/location.model';
 import { UIState } from '../shared/model/ui-state.model';
+import { lookupListToken } from '../shared/providers';
 
 @Component({
   selector: 'app-emp-form',
@@ -26,6 +27,7 @@ export class EmpFormComponent implements OnInit {
   private avatar;
 
   constructor(
+    @Inject(lookupListToken) public lookupLists,
     private employeeService : EmployeeService,
     private locationService : LocationService,
     private stateService : UIStateService,
@@ -34,14 +36,16 @@ export class EmpFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.avatar = this.employee.photo;
+    if (!this.employee.photo) {
+      this.avatar = "../../assets/default.png";
+    }
     this.locations = this.locationService.get();
     this.reader = new FileReader();
     this.form = this.formBuilder.group({
 
       photo: this.formBuilder.control(''),
       id: this.formBuilder.control(''),
-      firstName: this.formBuilder.control('', [Validators.required, ValidationService.nameValidator]),
+      firstName: this.formBuilder.control('', Validators.compose([Validators.required, ValidationService.nameValidator])),
       lastName: this.formBuilder.control('', [Validators.required, ValidationService.nameValidator]),
       gender: this.formBuilder.control('', Validators.required),
       dob: this.formBuilder.control('', Validators.required),

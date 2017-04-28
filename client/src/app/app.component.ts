@@ -49,4 +49,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.state$ = this.stateService.get();
   }
+
+  toggleAddForm() {
+    this.stateService.toggleAddForm();
+  }
 }

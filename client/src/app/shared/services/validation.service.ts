@@ -17,6 +17,9 @@ export class ValidationService {
   }
 
   static nameValidator(control) {
+    if (!control.value) {
+      return null;
+    }
     if (control.value.match(/^[a-z ,.'-]{1,50}$/i)) {
       return null;
     } else {
@@ -25,6 +28,9 @@ export class ValidationService {
   }
 
   static nationalityValidator(control) {
+    if (!control.value) {
+      return null;
+    }
     if (control.value.match(/^[a-z ]{1,45}$/i)) {
       return null;
     } else {
@@ -33,6 +39,9 @@ export class ValidationService {
   }
 
   static phoneValidator(control) {
+    if (!control.value) {
+      return null;
+    }
     if (control.value.match(/^[0-9]{5,15}$/)) {
       return null;
     } else {
@@ -41,6 +50,9 @@ export class ValidationService {
   }
 
   static emailValidator(control) {
+    if (!control.value) {
+      return null;
+    }
     if (control.value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
       return null;
     } else {
