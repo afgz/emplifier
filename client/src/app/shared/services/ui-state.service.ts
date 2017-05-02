@@ -23,8 +23,8 @@ export class UIStateService {
       "searchQuery" : "",
       "sortOrder" : "asc",
       "filter" : {
-        "gender" : "",
-        "location" : ""
+        "gender" : null,
+        "location" : null
       },
       "notification" : ""
     }
@@ -35,8 +35,8 @@ export class UIStateService {
     return this.states.asObservable();
   }
 
-  toggleAddForm() {
-    this._states.addForm = (this._states.addForm === null ? 'show' : null);
+  toggleAddForm(args) {
+    this._states.addForm = args;
     this.states.next(this._states);
   }
 

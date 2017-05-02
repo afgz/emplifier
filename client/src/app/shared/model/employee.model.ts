@@ -1,3 +1,5 @@
+import { Location } from '../model/location.model';
+
 export class Employee {
   id:String;
   firstName:String;

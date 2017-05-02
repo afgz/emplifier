@@ -1,4 +1,95 @@
 <md-card *ngIf="employee.id">
-  <app-emp-form
-  [employee]="employee"></app-emp-form>
+  <section fxLayout="column">
+
+    <section fxLayout="row" fxLayoutGap="20px">
+
+      <button color="accent" md-raised-button (click)="onEdit()">
+        <md-icon>edit</md-icon>
+        EDIT
+      </button>
+
+      <div fxFlex="25%" fxFlex.sm="40%" fxFlexAlign="center">
+        <div class="avatar-img" >
+          <img [src]="employee.photo | safeUrl" alt="image">
+        </div>
+      </div>
+      <div fxFlex="75%" fxFlex.sm="60%" fxFlexAlign="center">
+        <md-card-content>
+          <md-card-title>{{ employee.firstName }} {{ employee.lastName }}<md-chip *ngIf="employee.suspendDate">Inactive</md-chip></md-card-title>
+          <md-card-subtitle><md-icon>location_on</md-icon>{{ employee.locationId.city }}</md-card-subtitle>
+          <md-card-subtitle><md-icon>email</md-icon>{{ employee.email }}</md-card-subtitle>
+          <md-card-subtitle><md-icon>phone</md-icon>{{ employee.phone }}</md-card-subtitle>
+        </md-card-content>
+      </div>
+    </section>
+
+    <section class="detail-category" fxLayout="row" fxLayoutGap="20px">
+
+      <div class="personal" fxFlex="50%">
+        <md-card-content>
+          <h4 class="category-title"><md-icon>face</md-icon>Personal Information</h4>
+
+          <div fxLayout="row" fxLayoutGap="10px" class="detail-item">
+            <div fxFlex="30%" class="label">Gender</div>
+            <div fxFlex="70%">{{ employee.gender }}</div>
+          </div>
+
+          <div fxLayout="row" fxLayoutGap="10px" class="detail-item">
+            <div fxFlex="30%" class="label">Date of Birth</div>
+            <div fxFlex="70%">{{ employee.dob | date:'longDate' }}</div>
+          </div>
+
+          <div fxLayout="row" fxLayoutGap="10px" class="detail-item">
+            <div fxFlex="30%" class="label">Nationality</div>
+            <div fxFlex="70%">{{ employee.nationality }}</div>
+          </div>
+
+          <div fxLayout="row" fxLayoutGap="10px" class="detail-item">
+            <div fxFlex="30%" class="label">Marital Status</div>
+            <div fxFlex="70%">{{ employee.maritalStatus }}</div>
+          </div>
+
+        </md-card-content>
+      </div>
+
+      <div class="work" fxFlex="50%">
+        <md-card-content>
+          <h4 class="category-title"><md-icon>work</md-icon>Work Information</h4>
+
+            <div fxLayout="row" fxLayoutGap="10px" class="detail-item">
+              <div fxFlex="30%" class="label">Division</div>
+              <div fxFlex="70%">{{ employee.division }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px" class="detail-item">
+              <div fxFlex="30%" class="label">Sub Division</div>
+              <div fxFlex="70%">{{ employee.subDivision }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px" class="detail-item">
+              <div fxFlex="30%" class="label">Grade</div>
+              <div fxFlex="70%">{{ employee.grade }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px" class="detail-item">
+              <div fxFlex="30%" class="label">Status</div>
+              <div fxFlex="70%">{{ employee.status }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px" class="detail-item">
+              <div fxFlex="30%" class="label">Hired Date</div>
+              <div fxFlex="70%">{{ employee.hiredDate | date:'longDate' }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px" class="detail-item" *ngIf="employee.suspendDate">
+              <div fxFlex="30%" class="label">Suspend Date</div>
+              <div fxFlex="70%">{{ employee.suspendDate | date:'longDate' }}</div>
+            </div>
+
+        </md-card-content>
+      </div>
+    </section>
+
+  </section>
+
 </md-card>

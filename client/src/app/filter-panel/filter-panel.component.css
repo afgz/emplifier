@@ -1,16 +1,35 @@
 :host {
-  width: 100%;
+  position: relative;
 }
 
-md-card {
-  margin: 10px;
+.fill-space {
+  flex: 1 1 auto;
 }
 
-button {
-  background-color: transparent;
-  box-shadow: none;
+md-toolbar {
+  background-color: #f5f5f5;
+  position: absolute;
+  z-index: 2;
+  border-bottom: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
 }
 
-button span {
-  color: rgba(0, 0, 0, .87);
+
+md-chip {
+  margin-right: 0 5px;
+}
+
+.hoverable {
+  transition: all .2s ease-in-out;
+}
+
+.hoverable:hover, .active {
+  color: #673ab7;
+}
+
+.floating-button {
+  position: absolute;
+  bottom: 15px;
+  left: calc(15% - 28px);
+  z-index: 1;
 }

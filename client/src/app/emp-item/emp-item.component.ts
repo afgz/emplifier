@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
+import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
+import { MdDialogRef, MdDialog, MdDialogConfig, MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
-import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
+import { DialogComponent } from '../dialog/dialog.component';
 import { EmployeeService } from '../shared/services/employee.service';
 import { LocationService } from '../shared/services/location.service';
 import { UIStateService } from '../shared/services/ui-state.service';
@@ -17,18 +17,28 @@ import { UIState } from '../shared/model/ui-state.model';
   styleUrls: ['./emp-item.component.css'],
   animations: [
     trigger('deleteState', [
-      state('*', style({
-        transform: 'translate3d(0, 0, 0)'
-      })),
-      state('void', style({
-        transform: 'translate3d(0, -100%, 0)'
-      })),
-      transition('* <=> void', animate('300ms ease-in-out'))
+      state(
+        '*', style({ opacity: '1', transform: 'scale(1)' })
+      ),
+      transition('void => *', [
+        animate(150, keyframes([
+          style({opacity: 0, transform: 'scale(0.5)', offset: 0}),
+          style({opacity: 1, transform: 'scale(1.1)', offset: 0.5}),
+          style({opacity: 1, transform: 'scale(1.0)', offset: 1.0})
+        ]))
+      ]),
+      transition('* => void', [
+        animate(100, keyframes([
+          style({opacity: 1, transform: 'scale(1.0)', offset: 0}),
+          style({opacity: 0, transform: 'scale(0.5)', offset: 1})
+        ]))
+      ])
     ])
   ]
 })
 
 export class EmpItemComponent implements OnInit {
+  private newEmployee : Employee;
   private employees$ : Observable<Employee[]>;
   private locations$ : Observable<Location[]>;
   private state$ : Observable<UIState>;
@@ -42,7 +52,8 @@ export class EmpItemComponent implements OnInit {
     private locationService : LocationService,
     private stateService : UIStateService,
     private dialog: MdDialog,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private snackbar : MdSnackBar
   ) {}
 
   ngOnInit() {
@@ -56,20 +67,27 @@ export class EmpItemComponent implements OnInit {
     this.employeeService.selectEmployee(employee);
   }
 
-  onDelete(empId) {
+  onDelete(employee) {
     let config = new MdDialogConfig();
+    let name = employee.firstName+" "+employee.lastName;
     config.viewContainerRef = this.viewContainerRef;
 
-    this.dialogRef = this.dialog.open(DeleteDialogComponent, config);
+    this.dialogRef = this.dialog.open(DialogComponent, config);
 
-    this.dialogRef.componentInstance.message = "Are you sure you want to delete this item?";
+    this.dialogRef.componentInstance.message = "Are you sure you want to delete "+name+"?";
 
     this.dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.employeeService.delete(empId);
+        this.snackbar.open(name+" deleted.", 'DISMISS', {
+          duration: 5000,
+        });
+        this.employeeService.delete(employee.id);
       }
     });
 
+  }
 
+  onType(search) {
+    this.stateService.setSearchQuery(search.value);
   }
 }

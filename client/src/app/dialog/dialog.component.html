@@ -1,0 +1,11 @@
+<md-dialog-content>{{ message }}</md-dialog-content>
+<md-dialog-actions>
+  <button type="button" md-raised-button (click)="dialogRef.close(false)">
+    <md-icon>clear</md-icon>
+    cancel
+  </button>
+  <button type="button" color="primary" md-raised-button (click)="dialogRef.close(true)">
+    <md-icon>check</md-icon>
+    ok
+  </button>
+</md-dialog-actions>

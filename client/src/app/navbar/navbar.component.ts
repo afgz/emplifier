@@ -13,8 +13,4 @@ export class NavbarComponent {
     private stateService : UIStateService
   ) { }
 
-  toggleAddForm() {
-    this.stateService.toggleAddForm();
-  }
-
 }

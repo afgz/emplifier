@@ -4,25 +4,12 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {
-  MdDialogModule,
-  MdToolbarModule,
-  MdGridListModule,
-  MdButtonModule,
-  MdIconModule,
-  MdCardModule,
-  MdInputModule,
-  MdSelectModule,
-  MdSnackBarModule,
-  MdMenuModule,
-  MdChipsModule
-} from '@angular/material';
+import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { EmpItemComponent } from './emp-item/emp-item.component';
 import { EmpDetailComponent } from './emp-detail/emp-detail.component';
 import { EmpFormComponent } from './emp-form/emp-form.component';
-import { EmpAddComponent } from './emp-add/emp-add.component';
 import { EmployeeService } from './shared/services/employee.service';
 import { LocationService } from './shared/services/location.service';
 import { UIStateService } from './shared/services/ui-state.service';
@@ -32,12 +19,11 @@ import { LastnameSearchPipe } from './shared/pipes/lastname-search.pipe';
 import { GenderFilterPipe } from './shared/pipes/gender-filter.pipe';
 import { LastnameSortPipe } from './shared/pipes/lastname-sort.pipe';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AsCityPipe } from './shared/pipes/as-city.pipe';
 import { FilterPanelComponent } from './filter-panel/filter-panel.component';
 import { SafeUrlPipe } from './shared/pipes/safe-url.pipe';
 import { lookupListToken, lookupLists } from './shared/providers';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,34 +31,23 @@ import { lookupListToken, lookupLists } from './shared/providers';
     EmpItemComponent,
     EmpDetailComponent,
     EmpFormComponent,
-    EmpAddComponent,
     LocationFilterPipe,
     LastnameSearchPipe,
     GenderFilterPipe,
     LastnameSortPipe,
     SearchBarComponent,
-    DeleteDialogComponent,
     NavbarComponent,
-    AsCityPipe,
     FilterPanelComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
-    MdToolbarModule,
-    MdGridListModule,
-    MdButtonModule,
-    MdIconModule,
     BrowserAnimationsModule,
-    MdCardModule,
     FlexLayoutModule,
-    MdInputModule,
-    MdSelectModule,
-    MdMenuModule,
-    MdDialogModule.forRoot(),
-    MdChipsModule
+    MaterialModule.forRoot()
   ],
   providers: [
     EmployeeService,
@@ -83,7 +58,7 @@ import { lookupListToken, lookupLists } from './shared/providers';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-      DeleteDialogComponent,
+      DialogComponent,
   ]
 })
 export class AppModule { }

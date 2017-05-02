@@ -3,7 +3,10 @@ package com.emplifier.entity;
 import java.sql.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="employee")
@@ -13,38 +16,68 @@ public class Employee {
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	private String id;
-	@Column(name="first_name", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="first_name", length = 50, nullable=false)
 	private String firstName;
-	@Column(name="last_name", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="last_name", length = 50, nullable=false)
 	private String lastName;
-	@Column(name="gender", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="gender", length = 6, nullable=false)
 	private String gender;
+
+	@NotNull
 	@Column(name="dob", nullable=false)
 	private Date dob;
-	@Column(name="nationality", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="nationality", length = 45, nullable=false)
 	private String nationality;
-	@Column(name="marital_status", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="marital_status", length = 7, nullable=false)
 	private String maritalStatus;
-	@Column(name="phone", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="phone", length = 15, nullable=false)
 	private String phone;
-	@Column(name="sub_division", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="sub_division", length = 45, nullable=false)
 	private String subDivision;
-	@Column(name="status", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="status", length = 20, nullable=false)
 	private String status;
+
 	@Column(name="suspend_date")
 	private Date suspendDate;
+
+	@NotNull
 	@Column(name="hired_date", nullable=false)
 	private Date hiredDate;
-	@Column(name="grade", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="grade", length = 45, nullable=false)
 	private String grade;
-	@Column(name="division", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="division", length = 45, nullable=false)
 	private String division;
-	@Column(name="email", nullable=false)
+
+	@NotNull @NotEmpty
+	@Column(name="email", length = 50, nullable=false)
 	private String email;
+
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="location_id")
 	private Location locationId;
-	@Column(name="photo", nullable=false)
+
+	@Column(name="photo", nullable=true)
 	private String photo;
 	
 	public Employee(){}

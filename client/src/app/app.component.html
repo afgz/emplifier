@@ -1,30 +1,25 @@
 <div *ngIf="state$ | async as state">
 
-  <nav id="navbar">
-    <app-navbar></app-navbar>
-  </nav>
+  <section id="content" fxLayoutWrap>
 
-  <section id="searchBar" @searchBarState *ngIf="state.searchBar">
-    <app-search-bar></app-search-bar>
-  </section>
-
-  <section id="content" fxLayout="row">
-
-    <section id="add" @addFormState *ngIf="state.addForm" fxFlex = "90%" fxFlex.md = "100%">
-      <app-emp-add></app-emp-add>
+    <section id="form" @addFormState *ngIf="state.addForm" fxFlex = "70%">
+      <app-emp-form></app-emp-form>
   	</section>
 
-  	<aside id="list" fxFlex = "25%" fxFlex.md = "33.33%">
-      <app-filter-panel></app-filter-panel>
-      <app-emp-item></app-emp-item>
+    <app-filter-panel fxFlex="30"></app-filter-panel>
+    <app-navbar fxFlex="70"></app-navbar>
+
+  	<aside id="list" fxFlex = "30">
+      <app-emp-item class="scrollable"></app-emp-item>
+      <button class="floating" md-fab color="primary" (click)="openForm()"><md-icon>add</md-icon></button>
     </aside>
 
-  	<section id="detail" fxFlex = "75%" fxFlex.md = "66.66%">
+  	<section id="detail" fxFlex = "70">
       <app-emp-detail></app-emp-detail>
     </section>
 
   </section>
 
-  <div id="wrapper" @wrapperState *ngIf="state.addForm" (click)="toggleAddForm()"></div>
+  <div id="wrapper" @wrapperState *ngIf="state.addForm" (click)="closeForm()"></div>
 
 </div>

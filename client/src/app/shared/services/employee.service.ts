@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { BehaviorSubject } from 'rxjs/Rx';
 
 import { Employee } from '../model/employee.model';
+import { UIStateService } from './ui-state.service';
 
 @Injectable()
 export class EmployeeService  {
@@ -12,6 +13,7 @@ export class EmployeeService  {
   private selectedEmployee: BehaviorSubject<Employee>;
   private employees: BehaviorSubject<Employee[]>;
   private _employees: Employee[];
+  private stateService: UIStateService;
 
   constructor(private http: Http) {
     this.serverURL = '/api/employees/';
@@ -49,13 +51,19 @@ export class EmployeeService  {
     if (!employee.id) {
       this.http.post(this.serverURL, body, options)
         .map(response => response.json())
-        .subscribe(data => this._employees.push(data))
+        .subscribe(data => {
+          this._employees.push(data);
+          this.selectEmployee(data);
+        })
     } else {
       this.http.put(this.serverURL, body, options)
         .map(response => response.json())
         .subscribe(data => this._employees
           .forEach((emp, i) => {
-            if (emp.id === employee.id) { this._employees[i] = data; }
+            if (emp.id === employee.id) {
+              this._employees[i] = data;
+              this.selectEmployee(data);
+             }
           })
         )
     }
@@ -71,6 +79,7 @@ export class EmployeeService  {
           }
         });
         this.employees.next(this._employees);
+        this.selectedEmployee.next(new Employee);
       })
   }
 }

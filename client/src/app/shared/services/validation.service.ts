@@ -3,19 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ValidationService {
 
-  static getErrorMessage(validatorName:string, validatorValue?:any) {
-    let errorMessage = {
-      'required' : 'This field is required.',
-      'invalidName' : 'Name must contain only alphanumeric characters and space.',
-      'invalidNationality' : 'Nationality must contain only alphanumeric characters and space.',
-      'invalidPhone' : 'Phone must contain only numeric characters.',
-      'invalidEmail' : 'E-mail address pattern is invalid.'
-
-    };
-
-    return errorMessage[validatorName];
-  }
-
   static nameValidator(control) {
     if (!control.value) {
       return null;
@@ -24,17 +11,6 @@ export class ValidationService {
       return null;
     } else {
       return { 'invalidName' : true}
-    }
-  }
-
-  static nationalityValidator(control) {
-    if (!control.value) {
-      return null;
-    }
-    if (control.value.match(/^[a-z ]{1,45}$/i)) {
-      return null;
-    } else {
-      return { 'invalidNationality' : true}
     }
   }
 
@@ -57,6 +33,17 @@ export class ValidationService {
       return null;
     } else {
       return { 'invalidEmail' : true}
+    }
+  }
+
+  static dateValidator(control) {
+    if (!control.value) {
+      return null;
+    }
+    if (control.value.match(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/)) {
+      return null;
+    } else {
+      return { 'invalidDate' : true}
     }
   }
 

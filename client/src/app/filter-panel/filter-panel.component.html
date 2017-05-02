@@ -1,23 +1,28 @@
-<md-card>
-  <button md-fab (click)="toggleSearchBar()"><md-icon>search</md-icon></button>
+<md-toolbar>
 
-  <button md-fab [mdMenuTriggerFor]="location">
-    <md-icon>location_on</md-icon>
-  </button>
+  <span mdTooltip="Filter by location" [mdTooltipShowDelay]="300">
+    <button class="hoverable" [ngClass]="state.filter.location !== null ? 'active' : ''" md-icon-button [mdMenuTriggerFor]="location">
+      <md-icon>location_on</md-icon>
+    </button>
+  </span>
   <md-menu #location="mdMenu">
-    <button md-menu-item (click)="filterLocation('')">
+    <button md-menu-item (click)="filterLocation(null)">
       <span>All</span>
     </button>
     <div *ngFor="let location of locations$ | async">
-      <button md-menu-item (click)="filterLocation(location.id)">
+      <button md-menu-item (click)="filterLocation(location)">
         <span>{{ location.city }}</span>
       </button>
     </div>
   </md-menu>
 
-  <button md-fab [mdMenuTriggerFor]="gender">
-    <md-icon>wc</md-icon>
-  </button>
+  <span class="fill-space"></span>
+
+  <span mdTooltip="Filter by gender" [mdTooltipShowDelay]="300">
+    <button class="hoverable" [ngClass]="state.filter.gender !== null ? 'active' : ''" md-icon-button [mdMenuTriggerFor]="gender">
+      <md-icon>wc</md-icon>
+    </button>
+  </span>
   <md-menu #gender="mdMenu">
     <button md-menu-item (click)="filterAll()">
       <span>All</span>
@@ -30,9 +35,13 @@
     </button>
   </md-menu>
 
-  <button md-fab [mdMenuTriggerFor]="sort">
-    <md-icon>sort_by_alpha</md-icon>
-  </button>
+  <span class="fill-space"></span>
+
+  <span mdTooltip="Sort order" [mdTooltipShowDelay]="300">
+    <button class="hoverable" md-icon-button [mdMenuTriggerFor]="sort">
+      <md-icon>sort_by_alpha</md-icon>
+    </button>
+  </span>
   <md-menu #sort="mdMenu">
     <button md-menu-item (click)="sortAscending()">
       <span>Ascending</span>
@@ -41,7 +50,5 @@
       <span>Descending</span>
     </button>
   </md-menu>
-  
-  <p>{{(employees$ | async | genderFilter:(state$|async).filter.gender | locationFilter:(state$|async).filter.location | lastnameSearch:(state$|async).searchQuery | lastnameSort:(state$|async).sortOrder).length}} results found</p>
-</md-card>
 
+</md-toolbar>

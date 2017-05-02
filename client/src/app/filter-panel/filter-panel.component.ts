@@ -16,7 +16,7 @@ import { UIState } from '../shared/model/ui-state.model';
 export class FilterPanelComponent implements OnInit {
   private employees$ : Observable<Employee[]>;
   private locations$ : Observable<Location[]>;
-  private state$ : Observable<UIState>;
+  private state : UIState;
   private selectedLocation : String;
 
   constructor(
@@ -28,7 +28,8 @@ export class FilterPanelComponent implements OnInit {
   ngOnInit() {
     this.employees$ = this.employeeService.get();
     this.locations$ = this.locationService.get();
-    this.state$ = this.stateService.get();
+    this.stateService.get()
+      .subscribe(data => this.state = data);
   }
 
   toggleSearchBar() {
@@ -37,7 +38,7 @@ export class FilterPanelComponent implements OnInit {
 
 
   filterAll() {
-    this.stateService.setGender('');
+    this.stateService.setGender(null);
   }
 
   filterMale() {
@@ -56,8 +57,8 @@ export class FilterPanelComponent implements OnInit {
     this.stateService.setSortOrder('desc');
   }
 
-  filterLocation(locationId) {
-    this.stateService.setLocation(locationId);
+  filterLocation(location) {
+    this.stateService.setLocation(location);
   }
 
 }

@@ -3,6 +3,87 @@
 }
 
 md-card {
-  margin: 10px;
-  margin-left: 0;
+  margin: 5px;
+  margin-top: 74px;
+}
+
+md-card.mat-card {
+  box-shadow: none;
+  border: 1px solid #efefef;
+}
+
+md-card-subtitle, md-card-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #000000;
+}
+
+md-card-content md-icon {
+  margin-right: 10px;
+  color: rgba(0,0,0,.54);
+}
+
+.avatar-img {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+.avatar-img img {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border-radius: 2px;
+  border: 1px solid #f0f0f0;
+  object-fit: cover;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.label {
+  color: rgba(0,0,0,.54);
+  font-size: 14px;
+}
+
+.detail-item {
+  padding: 10px 0;
+  font-size: 16px;
+  align-items: center;
+}
+
+.personal {
+  border-right: 1px solid #e0e0e0;
+}
+
+.detail-category {
+  margin-top: 30px;
+}
+
+.category-title {
+  text-transform: uppercase;
+  color: rgba(0,0,0,.54);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+md-chip {
+  margin-left: 10px;
+}
+
+button {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  position: absolute;
+  right: 0;
+  transition: all .08s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.1);
 }

@@ -13,8 +13,4 @@ export class SearchBarComponent {
     private stateService : UIStateService
   ) { }
 
-  onType(search) {
-    this.stateService.setSearchQuery(search.value);
-  }
-
 }
